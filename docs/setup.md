@@ -429,7 +429,7 @@ if [ -d "$PROJECT_ROOT" ] && find "$PROJECT_ROOT" -mindepth 1 -maxdepth 1 -print
 fi
 mkdir -p "$PROJECT_ROOT" "$PROJECT_ROOT/.codex" \
   "$PROJECT_ROOT/.claude" "$PROJECT_ROOT/.cursor" \
-  "$PROJECT_ROOT/scripts" "$PROJECT_ROOT/templates/harness" \
+  "$PROJECT_ROOT/scripts" "$PROJECT_ROOT/templates/harness" "$PROJECT_ROOT/templates/learning" \
   "$PROJECT_ROOT/tests"
 git -C "$PROJECT_ROOT" init --quiet
 cp -R "$KIT_ROOT/templates/project/." "$PROJECT_ROOT/"
@@ -442,13 +442,14 @@ cp -R "$KIT_ROOT/templates/claude/agents" "$PROJECT_ROOT/.claude/agents"
 cp "$KIT_ROOT/templates/cursor/mcp.json" "$PROJECT_ROOT/.cursor/mcp.json"
 cp -R "$KIT_ROOT/templates/cursor/agents" "$PROJECT_ROOT/.cursor/agents"
 cp -R "$KIT_ROOT/templates/harness/." "$PROJECT_ROOT/templates/harness/"
+cp -R "$KIT_ROOT/templates/learning/." "$PROJECT_ROOT/templates/learning/"
 cp "$PROJECT_ROOT/templates/harness/preflight.target.json" \
   "$PROJECT_ROOT/templates/harness/preflight.json"
 cp "$PROJECT_ROOT/templates/harness/self-review.target.json" \
   "$PROJECT_ROOT/templates/harness/self-review.json"
 for TOOL in agent_preflight.py prove_preflight_mutations.py validate_agent_state.py \
   sync_skills.py self_review_hook.py setup_doctor.py path_safety.py bounded_process.py git_safety.py check_branch_stack.py \
-  check_claim_language.py validate_skill_receipt.py; do
+  check_claim_language.py validate_skill_receipt.py bootstrap_learning.py outcome_review.py deployment_profile.py; do
   cp "$KIT_ROOT/scripts/$TOOL" "$PROJECT_ROOT/scripts/$TOOL"
 done
 cp "$KIT_ROOT/tests/test_preflight_mutations.py" "$PROJECT_ROOT/tests/"
@@ -494,7 +495,7 @@ if ((Test-Path -LiteralPath $ProjectPath -PathType Container) -and
 }
 New-Item -ItemType Directory -Force -Path $ProjectPath | Out-Null
 $ProjectRoot = (Resolve-Path $ProjectPath).Path
-@('.codex', '.claude', '.cursor', 'scripts', 'templates\harness', 'tests') | ForEach-Object {
+@('.codex', '.claude', '.cursor', 'scripts', 'templates\harness', 'templates\learning', 'tests') | ForEach-Object {
   New-Item -ItemType Directory -Force -Path (Join-Path $ProjectRoot $_) | Out-Null
 }
 git -C $ProjectRoot init --quiet
@@ -515,6 +516,8 @@ Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\cursor\agents') `
   -Destination (Join-Path $ProjectRoot '.cursor\agents') -Recurse
 Get-ChildItem -LiteralPath (Join-Path $KitRoot 'templates\harness') -Force |
   Copy-Item -Destination (Join-Path $ProjectRoot 'templates\harness') -Recurse
+Get-ChildItem -LiteralPath (Join-Path $KitRoot 'templates\learning') -Force |
+  Copy-Item -Destination (Join-Path $ProjectRoot 'templates\learning') -Recurse
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'templates\harness\preflight.target.json') `
   -Destination (Join-Path $ProjectRoot 'templates\harness\preflight.json') -Force
 Copy-Item -LiteralPath (Join-Path $ProjectRoot 'templates\harness\self-review.target.json') `
@@ -523,7 +526,7 @@ Copy-Item -LiteralPath (Join-Path $ProjectRoot 'templates\harness\self-review.ta
   'agent_preflight.py', 'prove_preflight_mutations.py', 'validate_agent_state.py',
   'sync_skills.py', 'self_review_hook.py', 'setup_doctor.py', 'path_safety.py',
   'bounded_process.py', 'git_safety.py', 'check_branch_stack.py', 'check_claim_language.py',
-  'validate_skill_receipt.py'
+  'validate_skill_receipt.py', 'bootstrap_learning.py', 'outcome_review.py', 'deployment_profile.py'
 ) | ForEach-Object {
   Copy-Item -LiteralPath (Join-Path $KitRoot "scripts\$_") `
     -Destination (Join-Path $ProjectRoot "scripts\$_")

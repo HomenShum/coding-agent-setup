@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "accessed": "2026-09-04",
+  "accessed": "2026-09-05",
   "scope": "Bounded direct-source corpus reconstructed through 2026-09-04 from the supplied setup inventory, sanitized direct dependency and container declarations, local extension records, current kit configuration, and primary public repositories. Historical application code and prose, private repositories, and transitive packages are excluded.",
   "methodology": {
     "current_kit_direct": [
@@ -230,6 +230,16 @@
       "license": "MIT",
       "accessed": "2026-08-23",
       "evidence": "Historical nodekit contract and promotion goal",
+      "confidence": "high"
+    },
+    {
+      "name": "Langfuse",
+      "repository": "https://github.com/langfuse/langfuse",
+      "category": "agent-workflow",
+      "relationship": "Recommended self-hosted tracing and evaluation backend subject to deployment-profile review; not bundled.",
+      "license": "MIT except enterprise directories",
+      "accessed": "2026-09-05",
+      "evidence": "Primary repository license and self-hosting documentation",
       "confidence": "high"
     },
     {
@@ -883,6 +893,16 @@
       "license": "Apache-2.0",
       "accessed": "2026-08-23",
       "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "React Flow / xyflow",
+      "repository": "https://github.com/xyflow/xyflow",
+      "category": "frontend",
+      "relationship": "Recommended interactive graph UI for the fresh application proof; not a kit runtime dependency.",
+      "license": "MIT",
+      "accessed": "2026-09-05",
+      "evidence": "Primary repository and React Flow integration documentation",
       "confidence": "high"
     },
     {

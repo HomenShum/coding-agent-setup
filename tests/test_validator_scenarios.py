@@ -891,7 +891,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
 
         errors = validate_repo.validate_repo(target)
 
-        self.assertTrue(any("must contain exactly 17 skills" in error for error in errors))
+        self.assertTrue(any("must contain exactly 18 skills" in error for error in errors))
         self.assertTrue(any("skill manifest drift" in error for error in errors))
 
     def test_skill_frontmatter_size_and_metadata_contracts_are_rejected(self) -> None:

@@ -11,6 +11,7 @@
     "decide-ship-skip-defer",
     "initialize-scoped-branch",
     "planner-workers-judge",
+    "profile-enterprise-deployment",
     "publish-visual-tutorial",
     "reconcile-claims-to-landed",
     "refresh-handoff",

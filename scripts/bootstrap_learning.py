@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -38,8 +39,13 @@ def wording(value):
 
 def policy_at(bundle):
     policy = read(bundle / "policy.json")
-    if policy.get("version") != 1 or policy.get("activation") != "distinct-human-review":
-        fail("unsupported policy")
+    validate_policy(policy)
+    return policy
+
+
+def validate_policy(policy):
+    if policy.get("version") != 2 or policy.get("activation") != "distinct-human-review" or policy.get("regression") != "no-case-score-decrease":
+        fail("policy version 2 with no-case-score-decrease required; review and migrate legacy policy explicitly")
     for field in ("gates", "dimensions"):
         if not isinstance(policy.get(field), dict) or not 1 <= len(policy[field]) <= 30:
             fail("missing or oversized criteria")
@@ -49,10 +55,19 @@ def policy_at(bundle):
     for anchors in policy["dimensions"].values():
         if not isinstance(anchors, dict) or set(anchors) != set("12345") or not all(map(wording, anchors.values())):
             fail("dimensions need five descriptive anchors")
-    return policy
+
+
+def policy_sha256(policy):
+    """Bind reviewed JSON meaning; whitespace and object-key order are immaterial."""
+    canonical = json.dumps(policy, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def validate_run(run, policy):
+    if run.get("version") != 2:
+        fail("run version 2 required; regenerate legacy runs under reviewed policy")
+    if run.get("policy_sha256") != policy_sha256(policy):
+        fail("run policy digest does not match the reviewed policy")
     identity = run.get("identity")
     if not isinstance(identity, dict) or set(identity) != {"dataset", "rubric", "model", "evaluator"} or not all(map(wording, identity.values())):
         fail("complete versioned identity required")
@@ -65,6 +80,8 @@ def validate_run(run, policy):
     for case in cases:
         if not isinstance(case, dict) or not all(wording(case.get(k)) for k in ("id", "group", "trace")):
             fail("case requires id, group and trace receipt")
+        if not run["synthetic"] and case["trace"].strip().lower().startswith("synthetic:"):
+            fail("synthetic trace cannot certify a nonsynthetic run")
         if case["id"] in indexed or case.get("status") != "ok":
             fail("duplicate case or failed execution; infrastructure errors are not grades")
         split = case.get("split")
@@ -90,9 +107,12 @@ def validate_run(run, policy):
 
 
 def compare(policy, baseline, candidate):
+    validate_policy(policy)
     left, right = validate_run(baseline, policy), validate_run(candidate, policy)
     if baseline["identity"] != candidate["identity"] or baseline["synthetic"] != candidate["synthetic"] or set(left) != set(right):
         fail("incompatible identities or case coverage")
+    if baseline["harness"] == candidate["harness"]:
+        fail("baseline and candidate require distinct harness identities")
     for key in left:
         if any(left[key][field] != right[key][field] for field in ("split", "group")):
             fail("case assignment changed")
@@ -100,11 +120,11 @@ def compare(policy, baseline, candidate):
     if any(not g["value"] for c in right.values() for g in c["gates"].values()):
         verdict = "REJECT"
     else:
-        deltas = [sum(right[k]["scores"][dimension]["value"] - left[k]["scores"][dimension]["value"]
-                      for k in left if left[k]["split"] == split)
-                  for split in ("visible", "heldout") for dimension in policy["dimensions"]]
+        # Every case is critical. Other cases cannot compensate for its regression.
+        deltas = [right[k]["scores"][dimension]["value"] - left[k]["scores"][dimension]["value"]
+                  for k in left for dimension in policy["dimensions"]]
         verdict = "REJECT" if min(deltas) < 0 else "NUMERICALLY_ELIGIBLE" if max(deltas) > 0 else "NO_CHANGE"
-    return {"verdict": verdict, "synthetic": candidate["synthetic"], "activated": False,
+    return {"version": 2, "policy_sha256": policy_sha256(policy), "verdict": verdict, "synthetic": candidate["synthetic"], "activated": False,
             "unverified": ["judge calibration", "source authenticity", "heldout isolation", "human acceptance", "UI and hosted trace proof"]}
 
 
@@ -129,7 +149,8 @@ def initialize(target):
 
 
 def demo(policy):
-    baseline = {"identity": dict.fromkeys(("dataset", "rubric", "model", "evaluator"), "synthetic-v1"),
+    baseline = {"version": 2, "policy_sha256": policy_sha256(policy),
+                "identity": dict.fromkeys(("dataset", "rubric", "model", "evaluator"), "synthetic-v1"),
                 "harness": "baseline", "synthetic": True, "cases": []}
     for split in ("visible", "heldout"):
         baseline["cases"].append({"id": split, "group": split, "split": split, "status": "ok", "trace": "synthetic:" + split,

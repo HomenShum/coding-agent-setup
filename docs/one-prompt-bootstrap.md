@@ -29,6 +29,12 @@ without reviewed examples, or provision an account without credentials.
 
 ## Execution order and outputs
 
+Begin with the [outcome lifecycle](outcome-lifecycle.md): freeze the current and
+candidate versions, declare the trigger and exact cases, record before/after
+expectations, and derive HTML/ASCII from one append-only record. For enterprise
+requirements, use the [deployment profile](enterprise-deployment.md) before
+promising data residency or choosing cloud telemetry.
+
 1. **Find and reuse.** Read the target's instructions, manifests, history,
    existing tests, schemas, provider clients, UI components, and infrastructure.
    Search only authorized workspaces and connected organizational sources.
@@ -182,6 +188,10 @@ to reproduce published benchmark gains. The scaffold is independently authored.
 
 The local reference gate checks result shape, descriptive grades, exact case
 coverage, compatible identities, split non-regression, and hard gates:
+
+Version 2 also binds the policy digest, requires distinct harness identities and
+rejects every per-case score decline. An aggregate gain cannot hide a critical
+regression. Old records need an explicit v2 migration and fresh evaluation.
 
 ```bash
 python scripts/bootstrap_learning.py check --bundle templates/learning

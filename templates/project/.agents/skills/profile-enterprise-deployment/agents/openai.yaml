@@ -1,0 +1,7 @@
+{
+  "interface": {
+    "display_name": "Enterprise Deployment Profile",
+    "short_description": "Map ownership, region, data and access boundaries",
+    "default_prompt": "Use $profile-enterprise-deployment to check a customer deployment profile without provisioning services."
+  }
+}

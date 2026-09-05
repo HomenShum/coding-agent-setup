@@ -13,6 +13,13 @@ without separate authority. Synthetic examples prove contracts, not applications
 
 ## Workflow
 
+Before implementation, copy `templates/harness/outcome-contract.json` and declare
+the trigger, current/candidate envelope, target, exact cases, expected before/after,
+invariants, owner and stop criteria. Unknown baseline means DISCOVERY. Use
+`scripts/outcome_review.py` to validate, route and record one append-only history;
+derive HTML/ASCII from it. Keep failures, budgets and approvals across handoffs.
+Profile enterprise data, model, telemetry and operator boundaries when applicable.
+
 1. Inspect instructions, manifests, history, schemas, tests and existing services.
    Search only authorized local and organizational sources. Inventory provenance,
    scope, freshness, duplication, conflicts and incomplete searches. Decide
@@ -33,7 +40,7 @@ without separate authority. Synthetic examples prove contracts, not applications
    each with rationale. Calibrate on reviewed examples and negative controls.
    Provider failures are missing evidence, not scores. Freeze dataset, rubric,
    model and evaluator identities before comparing runs.
-7. Mine trace-linked weaknesses. Propose one bounded harness change with source,
+7. Distinguish current-run repair from future harness improvement. Mine trace-linked weaknesses. Propose one bounded harness change with source,
    scores and execution traces. Keep policy, judges and heldout cases outside
    candidate edit scope. Reject hard-gate failures and split regressions.
 8. Numerical eligibility is not acceptance. Require a distinct human acceptance

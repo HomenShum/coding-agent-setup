@@ -1,6 +1,6 @@
 # External projects
 
-<!-- external-projects-json-sha256: 667f02db398143b6d9059ccffcd639ad9774512f535cb897162fce4fbd809238 -->
+<!-- external-projects-json-sha256: d7a0750751fda5d16c6df97fcc3001fd12889a80838ed4576e1604fcc018b5db -->
 
 This is the human-readable view of the machine ledger in [`sources/external-projects.json`](../sources/external-projects.json). It is a bounded corpus reconstructed through 2026-09-04 from the supplied setup inventory, current kit files, sanitized direct dependency and container declarations, local extension records, and historical research notes. It deliberately excludes transitive packages, private repository identities, and historical application code or prose.
 
@@ -62,6 +62,7 @@ Agents, official marketplaces, MCP servers, installed skills, and review or proo
 | [Anthropic skills](https://github.com/anthropics/skills) | Source of the frontend-design skill used as a visual implementation authority. | Apache-2.0 for skills/frontend-design; no root repository license detected | 2026-08-23 | Evidence: Historical frontend product-authority document<br>Notes: License is scoped to the referenced skill, not asserted for every directory in the repository. |
 | [Fable Method](https://github.com/Sahir619/fable-method) | Source associated with installed proof-loop, method, and independent-judge workflow skills. | MIT | 2026-08-23 | Evidence: Installed skill names and historical workflow documents<br>Notes: The installed copy did not retain an upstream commit pin. |
 | [NodeKit](https://github.com/HomenShum/NodeKit) | Repository-contract and product-promotion workflow used to define proof and release gates. | MIT | 2026-08-23 | Evidence: Historical nodekit contract and promotion goal |
+| [Langfuse](https://github.com/langfuse/langfuse) | Recommended self-hosted tracing and evaluation backend subject to deployment-profile review; not bundled. | MIT except enterprise directories | 2026-09-05 | Evidence: Primary repository license and self-hosting documentation |
 | [Cloudflare OS](https://github.com/cloudflare/cloudflare-os) | Design-pattern inspiration for a locally authored add-dimension skill; no Cloudflare OS code was bundled. | Apache-2.0 | 2026-08-23 | Evidence: Historical skill attribution header |
 | [drawio-skill](https://github.com/Agents365-ai/drawio-skill) | Installed agent skill for generating and validating editable draw.io diagrams. | MIT | 2026-08-23 | Evidence: Locally installed skill source<br>Revision: Local skill reports 1.14.0; copied snapshot has no upstream commit pin |
 | [draw.io Desktop](https://github.com/jgraph/drawio-desktop) | Native renderer/exporter used by drawio-skill for PNG, SVG, PDF, and editable diagram proof. | Apache-2.0 | 2026-08-23 | Evidence: drawio-skill runtime dependency and local application setup |
@@ -142,9 +143,13 @@ First-party repositories behind direct Python manifest declarations. Optional an
 
 First-party repositories behind direct frontend manifest declarations. Multiple packages from one monorepo appear once.
 
+The graph library added on 2026-09-05 is a fresh-application recommendation,
+not a claim of prior dependency use.
+
 | Project | Relationship | License | Accessed | Evidence and caveats |
 |---|---|---|---|---|
 | [Vercel AI SDK](https://github.com/vercel/ai) | Direct frontend dependencies for streamed AI chat state and protocol handling. | Apache-2.0 | 2026-08-23 | Evidence: Historical frontend manifest and lockfile |
+| [React Flow / xyflow](https://github.com/xyflow/xyflow) | Recommended interactive graph UI for the fresh application proof; not a kit runtime dependency. | MIT | 2026-09-05 | Evidence: Primary repository and React Flow integration documentation |
 | [Base UI](https://github.com/mui/base-ui) | Direct frontend dependency for accessible unstyled UI primitives. | MIT | 2026-08-23 | Evidence: Historical frontend manifest and lockfile |
 | [OpenTelemetry JavaScript](https://github.com/open-telemetry/opentelemetry-js) | Direct frontend dependency for telemetry API contracts. | Apache-2.0 | 2026-08-23 | Evidence: Historical frontend manifest and lockfile |
 | [Sigma.js](https://github.com/jacomyal/sigma.js) | Direct frontend graph rendering and node-border package source. | MIT | 2026-08-23 | Evidence: Historical frontend manifest and lockfile |

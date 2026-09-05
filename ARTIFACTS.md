@@ -6,6 +6,8 @@ do not belong here.
 
 | Artifact | Claim | Replay | Status | Retention |
 |---|---|---|---|---|
+| Outcome continuity | Hash-linked records preserve frozen goals, failures and attempt limits across host switches; HTML and ASCII derive from one source | `python -m unittest discover -s tests -p test_outcome_review.py -v` | Local integrity; not authenticated approval | Keep contracts; target records remain private |
+| Enterprise profile | Incomplete region/access proof stays NO_GATE; prohibited declared transfers reject | `python -m unittest discover -s tests -p test_deployment_profile.py -v` | Offline consistency only | Keep generic fixtures; customer profiles remain private |
 | Application bootstrap contract | Context reuse, data, tracing, calibrated judging and UI proof have one portable workflow; synthetic comparisons never activate harnesses | `python -m unittest discover -s tests -p test_bootstrap_learning.py -v` | Local reference only; real target integration unverified | Keep with repository |
 | Publication validation | Public files are bounded, parseable, linked, attributed, and secret-scanned | `python scripts/validate_repo.py` | Maintained | Keep with repository |
 | Setup scenarios | Template parsing, synchronization, state, hooks, and bounded failure paths behave as documented | `python -m unittest discover -s tests -v` | Maintained | Keep with repository |

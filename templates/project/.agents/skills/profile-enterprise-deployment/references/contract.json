@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "skill": "profile-enterprise-deployment",
+  "trigger": "A customer needs a bounded deployment ownership and data-flow assessment.",
+  "refusal": "Do not provision, transfer private content or mistake consistency for legal or deployment approval.",
+  "inputs": ["customer_requirements", "deployment_profile", "authorized_evidence_scope"],
+  "receipt": ["skill", "status", "inputs", "evidence", "verification"],
+  "verification": {
+    "argv": ["{python}", "scripts/validate_skill_receipt.py", "--contract", "{skill_dir}/references/contract.json", "--receipt", "{receipt}"],
+    "success": "exit 0"
+  }
+}

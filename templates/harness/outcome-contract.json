@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "state": "DISCOVERY",
+  "experiment": "example-first-slice",
+  "trigger": "FEATURE_REQUESTED",
+  "goal": "A builder completes one evidence-backed product workflow.",
+  "target_state": "The target's real input produces a reviewed, reloadable artifact with trace and UI proof.",
+  "expected_improvement": "UNMEASURED: capture a baseline before making an improvement claim.",
+  "current": {"code": "UNMEASURED", "model": "UNRESOLVED", "prompt": "UNMEASURED", "tools": "UNMEASURED", "retriever": "UNMEASURED", "corpus": "UNMEASURED", "dataset": "UNMEASURED", "rubric": "UNMEASURED", "runtime": "UNMEASURED", "deployment_profile": "UNRESOLVED"},
+  "candidate": {"code": "UNMEASURED", "model": "UNRESOLVED", "prompt": "UNMEASURED", "tools": "UNMEASURED", "retriever": "UNMEASURED", "corpus": "UNMEASURED", "dataset": "UNMEASURED", "rubric": "UNMEASURED", "runtime": "UNMEASURED", "deployment_profile": "UNRESOLVED"},
+  "pipeline_mode": "WORKFLOW_CHAIN",
+  "case_ids": ["replace-with-target-case-id"],
+  "invariants": ["No invented source facts", "No model-owned human approvals"],
+  "stop_criteria": ["Named target journey passes with replayable receipts"],
+  "forbidden_actions": ["Weakening gold labels or gates", "Publishing private context"],
+  "required_approvals": ["Target owner acceptance before activation"],
+  "review_owner": "UNASSIGNED",
+  "next_action": "Discover authorized target context and freeze measured identities.",
+  "max_attempts": 3,
+  "timeout_seconds": 3600
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "deployment-profile/v1",
+  "profile_id": "synthetic-korea-customer-owned",
+  "synthetic": true,
+  "deployment": {
+    "owner": "customer",
+    "customer_scope": "synthetic-customer-only",
+    "application_region": "KR",
+    "delivery_mode": null,
+    "customer_admin_visibility": null,
+    "evidence": null
+  },
+  "policy": {
+    "application_regions": ["KR"],
+    "storage_regions": ["KR"],
+    "processing_regions": ["KR"],
+    "trace_regions": ["KR"],
+    "eval_regions": ["KR"],
+    "operator_regions": ["KR"],
+    "allow_cross_region_inference": false,
+    "allow_model_fallback": false,
+    "allow_trace_export": false,
+    "allow_support_access": false,
+    "allow_network_egress": false,
+    "allow_customer_content_global_eval": false,
+    "allowed_egress_endpoints": [],
+    "allowed_delivery_modes": ["binary"],
+    "allowed_customer_admin_visibility": ["full"],
+    "evidence": null
+  },
+  "storage": {"owner": "customer", "regions": ["KR"], "evidence": null},
+  "model_processing": {
+    "provider": null,
+    "model": null,
+    "regions": null,
+    "cross_region_inference": null,
+    "fallback_enabled": null,
+    "evidence": null
+  },
+  "trace_eval": {
+    "trace_owner": "customer",
+    "trace_regions": ["KR"],
+    "eval_owner": "customer",
+    "eval_regions": ["KR"],
+    "trace_export_enabled": false,
+    "customer_content_global_eval": false,
+    "evidence": null
+  },
+  "operations": {
+    "operator_owner": "customer",
+    "operator_regions": ["KR"],
+    "support_access_enabled": null,
+    "network_egress_enabled": false,
+    "egress_endpoints": [],
+    "evidence": null
+  },
+  "ip": {
+    "application_owner": "vendor",
+    "customer_data_owner": "customer",
+    "harness_owner": "vendor",
+    "legal_review": "unresolved",
+    "evidence": null
+  }
+}

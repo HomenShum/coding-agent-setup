@@ -63,11 +63,18 @@ def _git(
 def _scan_text(
     value: str,
     rules: tuple[tuple[int, str], ...],
-    windows_used: int,
-) -> tuple[bool, int, bool]:
-    remaining = max(0, MAX_PRIVATE_MARKER_WINDOWS - windows_used)
-    matched, used, exceeded = find_hashed_private_marker(value, rules, remaining)
-    return matched, windows_used + used, exceeded
+    deadline: float,
+) -> tuple[bool, bool]:
+    # The clean-tree budget bounds one value here, not all historical revisions.
+    # Whole-history work remains bounded by bytes, inventory counts and deadline.
+    if time.monotonic() >= deadline:
+        raise subprocess.TimeoutExpired("private marker scan", MAX_HISTORY_SECONDS)
+    matched, _, exceeded = find_hashed_private_marker(
+        value, rules, MAX_PRIVATE_MARKER_WINDOWS
+    )
+    if time.monotonic() >= deadline:
+        raise subprocess.TimeoutExpired("private marker scan", MAX_HISTORY_SECONDS)
+    return matched, exceeded
 
 
 def validate_reachable_history(
@@ -119,12 +126,11 @@ def validate_reachable_history(
         if len(refs) > MAX_HISTORY_REFS:
             return [f"reachable-history ref cap exceeded: more than {MAX_HISTORY_REFS}"]
 
-        windows_used = 0
         for ref in refs:
-            matched, windows_used, exceeded = _scan_text(ref, rules, windows_used)
+            matched, exceeded = _scan_text(ref, rules, deadline)
             if exceeded:
                 return [
-                    "reachable-history private marker scan exceeded its bounded window budget"
+                    "reachable-history private marker scan exceeded its per-value bounded window budget"
                 ]
             if matched:
                 reference_id = hashlib.sha256(ref.encode("utf-8")).hexdigest()[:12]
@@ -174,12 +180,10 @@ def validate_reachable_history(
                     f"reachable-history path cap exceeded: more than {MAX_HISTORY_PATHS}"
                 ]
             path_text = raw_path.decode("utf-8", errors="replace")
-            matched, windows_used, exceeded = _scan_text(
-                path_text, rules, windows_used
-            )
+            matched, exceeded = _scan_text(path_text, rules, deadline)
             if exceeded:
                 return [
-                    "reachable-history private marker scan exceeded its bounded window budget"
+                    "reachable-history private marker scan exceeded its per-value bounded window budget"
                 ]
             if matched:
                 path_id = hashlib.sha256(raw_path).hexdigest()[:12]
@@ -210,10 +214,10 @@ def validate_reachable_history(
                 object_ids.append(object_id)
             if separator:
                 path_text = raw_path.decode("utf-8", errors="replace")
-                matched, windows_used, exceeded = _scan_text(path_text, rules, windows_used)
+                matched, exceeded = _scan_text(path_text, rules, deadline)
                 if exceeded:
                     return [
-                        "reachable-history private marker scan exceeded its bounded window budget"
+                        "reachable-history private marker scan exceeded its per-value bounded window budget"
                     ]
                 if matched:
                     path_id = hashlib.sha256(raw_path).hexdigest()[:12]
@@ -267,10 +271,10 @@ def validate_reachable_history(
                     f"reachable-history byte cap exceeded: more than {MAX_HISTORY_TOTAL_BYTES}"
                 ]
             content_text = content.decode("utf-8", errors="replace")
-            matched, windows_used, exceeded = _scan_text(content_text, rules, windows_used)
+            matched, exceeded = _scan_text(content_text, rules, deadline)
             if exceeded:
                 return [
-                    "reachable-history private marker scan exceeded its bounded window budget"
+                    "reachable-history private marker scan exceeded its per-value bounded window budget"
                 ]
             if matched:
                 object_id_digest = hashlib.sha256(raw_object_id).hexdigest()[:12]

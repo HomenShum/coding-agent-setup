@@ -1992,6 +1992,14 @@ class PublicTemplateScenarios(unittest.TestCase):
 
     def test_newcomer_gets_an_honest_no_gate_after_documented_materialization(self) -> None:
         """A newcomer cannot inherit the kit's green evidence as target-project proof."""
+        setup = (ROOT / "docs" / "setup.md").read_text(encoding="utf-8")
+        posix_tools = setup.split("for TOOL in ", 1)[1].split("; do", 1)[0]
+        windows_tools = setup.split("'agent_preflight.py', 'prove_preflight_mutations.py'", 1)[1].split(") | ForEach-Object", 1)[0]
+        for name in ("bootstrap_learning.py", "outcome_review.py", "deployment_profile.py"):
+            self.assertIn(name, posix_tools)
+            self.assertIn(name, windows_tools)
+        self.assertIn('cp -R "$KIT_ROOT/templates/learning/." "$PROJECT_ROOT/templates/learning/"', setup)
+        self.assertIn("Copy-Item -Destination (Join-Path $ProjectRoot 'templates\\learning') -Recurse", setup)
         with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             root = Path(directory)
             shutil.copytree(ROOT / "templates" / "project", root, dirs_exist_ok=True)
@@ -2038,6 +2046,7 @@ class PublicTemplateScenarios(unittest.TestCase):
                 ("templates/claude/agents", ".claude/agents"),
                 ("templates/cursor/agents", ".cursor/agents"),
                 ("templates/harness", "templates/harness"),
+                ("templates/learning", "templates/learning"),
             ):
                 shutil.copytree(ROOT / source, root / target)
 
@@ -2064,6 +2073,9 @@ class PublicTemplateScenarios(unittest.TestCase):
                 "check_claim_language.py",
                 "path_safety.py",
                 "validate_skill_receipt.py",
+                "bootstrap_learning.py",
+                "outcome_review.py",
+                "deployment_profile.py",
             ):
                 shutil.copy2(ROOT / "scripts" / name, root / "scripts" / name)
             (root / "tests").mkdir()
@@ -2092,6 +2104,20 @@ class PublicTemplateScenarios(unittest.TestCase):
             self.assertEqual(
                 {"Git": "present", "Python >= 3.11": "present"}, runtime_statuses
             )
+            for command in ("check", "demo"):
+                learning = subprocess.run(
+                    [sys.executable, "-B", "scripts/bootstrap_learning.py", command],
+                    cwd=root, capture_output=True, text=True, timeout=15, check=False,
+                )
+                self.assertEqual(0, learning.returncode, learning.stdout + learning.stderr)
+                result = json.loads(learning.stdout)
+                if command == "demo":
+                    self.assertEqual("NUMERICALLY_ELIGIBLE", result["verdict"])
+                    self.assertTrue(result["synthetic"])
+                    self.assertFalse(result["activated"])
+                else:
+                    self.assertEqual("VALID_SCAFFOLD", result["status"])
+                    self.assertFalse(result["application_verified"])
 
     def test_each_host_adapter_parses_and_all_skills_have_discovery_metadata(self) -> None:
         """A maintainer can prove the distributed examples are parseable before copying them."""
@@ -2238,7 +2264,7 @@ class PublicTemplateScenarios(unittest.TestCase):
         skill_root = ROOT / catalog["canonical_root"]
         names = sorted(path.name for path in skill_root.iterdir() if path.is_dir())
         self.assertEqual(catalog["skills"], names)
-        self.assertEqual(17, len(names))
+        self.assertEqual(18, len(names))
         for name in names:
             skill = skill_root / name
             self.assertLess(len((skill / "SKILL.md").read_text(encoding="utf-8").splitlines()), 100)

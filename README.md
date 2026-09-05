@@ -11,6 +11,10 @@ For application implementation beyond workstation setup, start with the
 [one-prompt application bootstrap](docs/one-prompt-bootstrap.md): context reuse,
 data curation, tracing, calibrated evaluation, UI proof and harness qualification.
 
+The [outcome lifecycle](docs/outcome-lifecycle.md) carries frozen versions and
+failures across hosts; [enterprise profiles](docs/enterprise-deployment.md)
+separate data, inference, telemetry and operator-access requirements.
+
 - current install paths for Windows, macOS, Linux, and WSL;
 - one canonical project contract and one canonical `.agents/skills` tree;
 - native MCP, hook, and subagent examples for all three hosts;
