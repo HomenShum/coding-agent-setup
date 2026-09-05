@@ -7,6 +7,10 @@ discovery without pretending the hosts use one configuration format.
 
 ## What is included
 
+For application implementation beyond workstation setup, start with the
+[one-prompt application bootstrap](docs/one-prompt-bootstrap.md): context reuse,
+data curation, tracing, calibrated evaluation, UI proof and harness qualification.
+
 - current install paths for Windows, macOS, Linux, and WSL;
 - one canonical project contract and one canonical `.agents/skills` tree;
 - native MCP, hook, and subagent examples for all three hosts;

@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Bootstrap Evidence App","short_description":"Build a traced and evaluated app from one prompt","default_prompt":"Use $bootstrap-evidence-app to implement this product with context reuse, tracing, evaluation and UI proof."}}

@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "gates": {"grounded": {"question": "Is every material claim supported by an authorized source receipt?", "pass": "Every material claim has applicable supporting evidence.", "fail": "At least one material claim lacks applicable supporting evidence."}},
+  "dimensions": {"usefulness": {"1": "Cannot complete the user's job.", "2": "Major corrections are required.", "3": "Completes the job with meaningful limitations.", "4": "Completes the job with minor limitations.", "5": "Completes the job accurately and clearly without material corrections."}},
+  "activation": "distinct-human-review"
+}

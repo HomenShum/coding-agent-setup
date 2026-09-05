@@ -2238,7 +2238,7 @@ class PublicTemplateScenarios(unittest.TestCase):
         skill_root = ROOT / catalog["canonical_root"]
         names = sorted(path.name for path in skill_root.iterdir() if path.is_dir())
         self.assertEqual(catalog["skills"], names)
-        self.assertEqual(16, len(names))
+        self.assertEqual(17, len(names))
         for name in names:
             skill = skill_root / name
             self.assertLess(len((skill / "SKILL.md").read_text(encoding="utf-8").splitlines()), 100)

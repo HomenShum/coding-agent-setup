@@ -5,6 +5,7 @@
   "skills": [
     "append-sourced-decision",
     "assemble-proof-packet",
+    "bootstrap-evidence-app",
     "build-evidence-packet",
     "capture-ui-before-after",
     "decide-ship-skip-defer",

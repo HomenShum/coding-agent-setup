@@ -6,6 +6,7 @@ do not belong here.
 
 | Artifact | Claim | Replay | Status | Retention |
 |---|---|---|---|---|
+| Application bootstrap contract | Context reuse, data, tracing, calibrated judging and UI proof have one portable workflow; synthetic comparisons never activate harnesses | `python -m unittest discover -s tests -p test_bootstrap_learning.py -v` | Local reference only; real target integration unverified | Keep with repository |
 | Publication validation | Public files are bounded, parseable, linked, attributed, and secret-scanned | `python scripts/validate_repo.py` | Maintained | Keep with repository |
 | Setup scenarios | Template parsing, synchronization, state, hooks, and bounded failure paths behave as documented | `python -m unittest discover -s tests -v` | Maintained | Keep with repository |
 | Fresh-project materialization | A copied project passes skill sync, native config parsing, and setup diagnosis, then honestly reports `NO_GATE` until target-owned proof is configured | `python -m unittest discover -s tests -p test_agent_stack_scenarios.py -v` | Maintained | Keep with repository |
