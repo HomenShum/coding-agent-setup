@@ -15,6 +15,8 @@ from typing import Callable
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# Physical fixture paths keep OS aliases outside link-rejection scenarios.
+TEMP_ROOT = Path(tempfile.gettempdir()).resolve(strict=True)
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import agent_preflight  # noqa: E402
@@ -22,7 +24,7 @@ import agent_preflight  # noqa: E402
 
 class SevenLayerPreflightScenarios(unittest.TestCase):
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory()
+        self.temporary = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         (self.root / "src").mkdir()
@@ -331,7 +333,7 @@ class SevenLayerPreflightScenarios(unittest.TestCase):
         subprocess.run(["git", "-C", str(self.root), "add", "schema.json", "receipts/shape.json"], check=True)
         subprocess.run([*commit, "shape-without-bump"], check=True)
 
-        with tempfile.TemporaryDirectory() as clone_directory:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as clone_directory:
             shallow = Path(clone_directory) / "shallow"
             subprocess.run(
                 ["git", "clone", "--quiet", "--depth", "1", self.root.as_uri(), str(shallow)],

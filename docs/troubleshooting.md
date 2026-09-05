@@ -5,6 +5,19 @@ settings precedence, skill synchronization, subagent discovery, MCP startup,
 hook execution, deterministic gates, or the external system a tool calls.
 Changing prompt wording cannot repair a missing process or denied credential.
 
+## A physical path is required for local proof inputs
+
+If a macOS user sees `linked ... path component: var` or a root-containment
+error while working under a temporary folder, the path may use the operating
+system's `/var` alias. From the intended project, run `pwd -P` and pass that
+physical absolute path to the tool. Do not resolve an untrusted file or a link
+inside the project to bypass rejection: those links remain unsupported inputs.
+Scenario fixtures create their temporary directories under a canonical parent
+so ordinary macOS aliases do not interfere with the deliberate link tests.
+Windows shortened directory names can cause the same containment error. Use
+the full physical project path; `python -c "from pathlib import Path; print(Path.cwd().resolve())"`
+prints it from the intended project on either platform.
+
 ## Run the setup doctor first
 
 ```bash

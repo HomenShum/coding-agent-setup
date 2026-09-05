@@ -16,6 +16,8 @@ from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# Physical fixture paths keep OS aliases outside link-rejection scenarios.
+TEMP_ROOT = Path(tempfile.gettempdir()).resolve(strict=True)
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import validate_repo  # noqa: E402
@@ -25,7 +27,7 @@ import path_safety  # noqa: E402
 
 class ValidatorAdversarialScenarios(unittest.TestCase):
     def copy_repository(self) -> tuple[tempfile.TemporaryDirectory[str], Path]:
-        temporary = tempfile.TemporaryDirectory()
+        temporary = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
         target = Path(temporary.name) / "repo"
         shutil.copytree(ROOT, target, ignore=shutil.ignore_patterns(".git", "__pycache__"))
         return temporary, target
@@ -209,7 +211,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
     def test_publication_inventory_never_opens_ignored_runtime_or_host_state(self) -> None:
         """A publisher scans only files that could enter the repository, with or without Git."""
         for use_git in (False, True):
-            with self.subTest(use_git=use_git), tempfile.TemporaryDirectory() as directory:
+            with self.subTest(use_git=use_git), tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
                 target = Path(directory) / "repo"
                 shutil.copytree(
                     ROOT,
@@ -248,7 +250,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
 
     def test_publication_inventory_excludes_a_tracked_file_deleted_from_the_worktree(self) -> None:
         """A pending tracked deletion is not reopened as though its old content were publishable."""
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             root = Path(directory)
             tracked = root / "retired-note.md"
             tracked.write_text("retired public note\n", encoding="utf-8")
@@ -328,7 +330,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
     def test_bounded_reader_rejects_a_file_that_grows_after_discovery(self) -> None:
         """A concurrent writer cannot make the publication scan allocate an unbounded file."""
 
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             path = Path(directory) / "growing.txt"
             path.write_bytes(b"x" * validate_repo.MAX_PUBLIC_FILE_BYTES)
             original_read = path_safety.os.read
@@ -352,7 +354,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
     def test_publication_reader_rejects_a_fifo_without_blocking(self) -> None:
         """A local named pipe cannot stall a publication scan while it waits for a writer."""
 
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             fifo = Path(directory) / "blocked-input"
             os.mkfifo(fifo)
             with self.assertRaisesRegex(ValueError, "regular file"):
@@ -517,7 +519,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
     def test_directory_only_publication_tree_stops_at_the_entry_cap(self) -> None:
         """An empty-directory flood cannot keep a publication scan walking forever."""
 
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             root = Path(directory)
             names = [f"empty-{index:04d}" for index in range(validate_repo.MAX_PUBLIC_FILES + 1)]
             errors = validate_repo.BoundedErrors()
@@ -532,7 +534,7 @@ class ValidatorAdversarialScenarios(unittest.TestCase):
         """A publisher cannot redirect the bounded repository walk into another directory."""
         temporary, target = self.copy_repository()
         self.addCleanup(temporary.cleanup)
-        with tempfile.TemporaryDirectory() as outside:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as outside:
             outside_root = Path(outside)
             outside_file = outside_root / "outside.txt"
             outside_file.write_text("external sentinel\n", encoding="utf-8")

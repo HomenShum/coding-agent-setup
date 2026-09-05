@@ -58,6 +58,7 @@
 - User outcome: the public setup kit starts with reviewed files and no inherited Git objects.
 - Changes: align the self-repository attribution exemption with the publication destination; allow fifteen bounded minutes for the multi-platform offline CI job after the measured local scenario suite exceeded five minutes on its own.
 - Verification: offline validation, scenario tests, preflight, and a fresh-history scan must pass before upload; public raw content and a full remote clone are checked afterward.
+- Platform fixture repair: create all scenario temporary directories under their physical parent. The first public macOS run exposed `/var` aliases, and Windows exposed shortened directory names; both made otherwise-valid fixtures fail strict root-containment checks. Production guards and every malicious-link assertion remain unchanged; the actual macOS and Windows jobs are the required regression proof.
 
 ## 2026-08-23 — Add bounded publication checks
 

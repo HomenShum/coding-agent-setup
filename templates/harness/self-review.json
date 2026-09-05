@@ -9,7 +9,7 @@
     "visual": "This text-and-configuration change explicitly has no rendered interface."
   },
   "artifact": "self-review",
-  "digest": "366a63a53b1446e25692abb99530153e59e97126279cb556b754e2c94f9a4ef9",
+  "digest": "a415adcab42321220b779d61ac508ebe281d0a91e9528984e768bfb58f03fd2e",
   "paths": [
     "scripts/agent_preflight.py",
     "scripts/bounded_process.py",

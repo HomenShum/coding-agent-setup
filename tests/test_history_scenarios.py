@@ -12,6 +12,8 @@ from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# Physical fixture paths keep OS aliases outside link-rejection scenarios.
+TEMP_ROOT = Path(tempfile.gettempdir()).resolve(strict=True)
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import check_private_history  # noqa: E402
@@ -22,7 +24,7 @@ class ReachableHistoryScenarios(unittest.TestCase):
     rules = ((len(marker), hashlib.sha256(marker.encode("utf-8")).hexdigest()),)
 
     def setUp(self) -> None:
-        self.temporary = tempfile.TemporaryDirectory()
+        self.temporary = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
         subprocess.run(["git", "init", "--quiet", str(self.root)], check=True)
@@ -307,7 +309,7 @@ class ReachableHistoryScenarios(unittest.TestCase):
 
         (self.root / "public.txt").write_text("second clean version\n", encoding="utf-8")
         self.commit("second clean commit")
-        with tempfile.TemporaryDirectory() as clone_directory:
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as clone_directory:
             shallow = Path(clone_directory) / "shallow"
             subprocess.run(
                 ["git", "clone", "--quiet", "--depth", "1", self.root.as_uri(), str(shallow)],

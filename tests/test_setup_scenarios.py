@@ -11,6 +11,8 @@ from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
+# Physical fixture paths keep OS aliases outside link-rejection scenarios.
+TEMP_ROOT = Path(tempfile.gettempdir()).resolve(strict=True)
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import validate_repo  # noqa: E402
@@ -18,7 +20,7 @@ import validate_repo  # noqa: E402
 
 class SetupPublicationScenarios(unittest.TestCase):
     def copy_repository(self) -> tuple[tempfile.TemporaryDirectory[str], Path]:
-        temporary = tempfile.TemporaryDirectory()
+        temporary = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
         target = Path(temporary.name) / "repo"
         shutil.copytree(ROOT, target, ignore=shutil.ignore_patterns(".git", "__pycache__"))
         return temporary, target

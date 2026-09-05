@@ -51,6 +51,7 @@
 
 - User outcome: clone-path examples, the private vulnerability-report link, and the maintainer handoff identify the new three-host setup repository.
 - Verification: local link and attribution validation must pass; public content and private vulnerability-reporting availability are checked after repository creation.
+- macOS repair: explain how to supply a physical project path when system aliases trigger the deliberately strict local-input checks.
 
 ## 2026-08-23 — Publish one cross-client setup path
 
