@@ -1,0 +1,13 @@
+{
+  "checks": {},
+  "configured": false,
+  "remedy": [
+    "replace checks with target-owned schema and receipt paths",
+    "scan the target implementation for silent handlers",
+    "name target conventions and runtime dependencies",
+    "run target scenario tests",
+    "choose a required visual gate or an evidence-backed not-applicable reason",
+    "generate a fresh digest-bound self-review receipt"
+  ],
+  "version": 2
+}

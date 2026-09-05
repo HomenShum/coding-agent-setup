@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Refresh Handoff","short_description":"Leave current state for the next agent host","default_prompt":"Use $refresh-handoff to leave a safe, current receipt before this context yields."}}

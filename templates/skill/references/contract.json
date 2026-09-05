@@ -1,0 +1,30 @@
+{
+  "inputs": [
+    "requested_outcome",
+    "scope",
+    "proof_command",
+    "observable_proof"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "refusal": "Refuse to certify the change when raw artifacts are unavailable, the named proof is outside the granted authority, or replay would expose credentials or private identifiers.",
+  "skill": "example-proof",
+  "trigger": "Use after a substantive implementation or another agent's completion claim needs independent verification against one named user outcome.",
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  },
+  "version": 1
+}

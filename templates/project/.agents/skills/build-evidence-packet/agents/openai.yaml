@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Build Evidence Packet","short_description":"Synthesize bounded primary-source evidence","default_prompt":"Use $build-evidence-packet to gather and reconcile evidence for this decision."}}

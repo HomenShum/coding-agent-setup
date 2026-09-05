@@ -1,0 +1,27 @@
+{
+  "answers": {
+    "evidence": "Each claim names a local command, parsed artifact, or explicit observation.",
+    "handoff": "The receipt states what passed, what did not run, and what remains for a human.",
+    "intent": "The change stays within the declared public setup-kit scope.",
+    "regression": "A clean baseline and one deliberate mutation per layer are exercised.",
+    "scope": "Only files required by the seven-layer preflight are part of this receipt.",
+    "security": "Inputs, reads, commands, output, time, and errors have hard bounds.",
+    "visual": "This text-and-configuration change explicitly has no rendered interface."
+  },
+  "artifact": "self-review",
+  "digest": "366a63a53b1446e25692abb99530153e59e97126279cb556b754e2c94f9a4ef9",
+  "paths": [
+    "scripts/agent_preflight.py",
+    "scripts/bounded_process.py",
+    "scripts/git_safety.py",
+    "scripts/path_safety.py",
+    "scripts/prove_preflight_mutations.py",
+    "templates/harness/hook-admission.json",
+    "templates/harness/preflight.json",
+    "templates/harness/shape-version.json",
+    "tests/test_preflight_mutations.py"
+  ],
+  "schema_digest": "af30835c26fdd3f49e0e4dd672da15ec2c67135af39154a9af1c1036f98cfc88",
+  "status": "complete",
+  "version": 1
+}

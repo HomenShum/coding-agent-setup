@@ -1,0 +1,1260 @@
+{
+  "schema_version": 1,
+  "accessed": "2026-09-04",
+  "scope": "Bounded direct-source corpus reconstructed through 2026-09-04 from the supplied setup inventory, sanitized direct dependency and container declarations, local extension records, current kit configuration, and primary public repositories. Historical application code and prose, private repositories, and transitive packages are excluded.",
+  "methodology": {
+    "current_kit_direct": [
+      "https://github.com/git/git",
+      "https://github.com/python/cpython",
+      "https://github.com/actions/checkout",
+      "https://github.com/actions/setup-python"
+    ],
+    "current_kit_authorities": [
+      "https://github.com/anthropics/claude-code",
+      "https://github.com/openai/codex",
+      "https://github.com/agentskills/agentskills",
+      "https://github.com/SchemaStore/schemastore",
+      "https://github.com/openai/codex-plugin-cc",
+      "https://github.com/Sahir619/fable-method"
+    ],
+    "required_historical_sources": [
+      "https://github.com/Vistyy/nopus",
+      "https://github.com/anthropics/claude-code-action",
+      "https://github.com/DietrichGebert/ponytail",
+      "https://github.com/upstash/context7",
+      "https://github.com/openai/codex-plugin-cc",
+      "https://github.com/thedotmack/claude-mem"
+    ],
+    "historical_evidence": [
+      "supplied setup inventory",
+      "sanitized direct dependency and lockfile declarations",
+      "sanitized container and CI declarations",
+      "local extension manifests and attribution records",
+      "historical architecture and product-authority notes"
+    ],
+    "excluded": [
+      "historical application source and prose",
+      "private repository identities",
+      "transitive packages",
+      "ambient operating-system shells and base copy, search, and directory utilities; these are cited through vendor or platform documentation rather than reconstructed as repository dependencies",
+      "credentials, sessions, caches, and workstation paths"
+    ]
+  },
+  "license_notice": "License labels are discovery aids, not legal advice. NOASSERTION means no reliable repository-wide license was established during this audit; it does not mean public-domain or unrestricted use.",
+  "projects": [
+    {
+      "name": "Git",
+      "repository": "https://github.com/git/git",
+      "category": "platform-tool",
+      "relationship": "Direct runtime prerequisite for bootstrap, generated-worktree identity checks, and branch-stack ancestry proof in this kit.",
+      "license": "GPL-2.0-only for the main project; compatible licenses apply to identified parts",
+      "accessed": "2026-09-04",
+      "evidence": "Current setup instructions, hook implementation, branch-stack checker, and upstream repository notice",
+      "confidence": "high"
+    },
+    {
+      "name": "CPython",
+      "repository": "https://github.com/python/cpython",
+      "category": "platform-tool",
+      "relationship": "Direct Python 3.11+ runtime for the setup, validation, synchronization, hook, and scenario scripts in this kit.",
+      "license": "Python Software Foundation License Version 2",
+      "accessed": "2026-09-04",
+      "evidence": "Current scripts, CI runtime declaration, setup instructions, and upstream LICENSE",
+      "confidence": "high"
+    },
+    {
+      "name": "Anthropic Claude Code",
+      "repository": "https://github.com/anthropics/claude-code",
+      "category": "agent-workflow",
+      "relationship": "Primary coding agent and browser-assisted implementation workflow in prior development work.",
+      "license": "Proprietary; Anthropic Commercial Terms (repository notice reserves rights)",
+      "accessed": "2026-08-23",
+      "evidence": "Historical agent playbook and setup records",
+      "confidence": "high"
+    },
+    {
+      "name": "OpenAI Codex",
+      "repository": "https://github.com/openai/codex",
+      "category": "agent-workflow",
+      "relationship": "Implementation and adversarial-review agent used in cross-agent workflows.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical agent playbook and current setup",
+      "confidence": "high"
+    },
+    {
+      "name": "Agent Skills",
+      "repository": "https://github.com/agentskills/agentskills",
+      "category": "agent-workflow",
+      "relationship": "Portable skill format adopted for the canonical project skill templates.",
+      "license": "Apache-2.0 for code and specification; CC-BY-4.0 for documentation",
+      "accessed": "2026-09-04",
+      "evidence": "Public specification, examples, and repository license files",
+      "confidence": "high"
+    },
+    {
+      "name": "OpenAI Plugins",
+      "repository": "https://github.com/openai/plugins",
+      "category": "agent-workflow",
+      "relationship": "Official Codex plugin marketplace and example directory inspected as a setup and plugin source.",
+      "license": "NOASSERTION (no repository-wide license detected; individual plugins may differ)",
+      "accessed": "2026-08-23",
+      "evidence": "Locally observed Codex plugin catalog",
+      "confidence": "high",
+      "notes": "Review each selected plugin's own manifest and license before installation."
+    },
+    {
+      "name": "Claude Code official plugins",
+      "repository": "https://github.com/anthropics/claude-plugins-official",
+      "category": "agent-workflow",
+      "relationship": "Official Claude Code plugin directory used for plugin discovery and installation patterns.",
+      "license": "Apache-2.0 for directory code; linked plugin licenses vary",
+      "accessed": "2026-08-23",
+      "evidence": "Locally observed Claude Code marketplace",
+      "confidence": "high"
+    },
+    {
+      "name": "Codex plugin for Claude Code",
+      "repository": "https://github.com/openai/codex-plugin-cc",
+      "category": "agent-workflow",
+      "relationship": "Locally observed official bridge plugin for bounded Claude Code to Codex implementation and review workflows.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Local plugin installation history",
+      "confidence": "high"
+    },
+    {
+      "name": "claude-mem",
+      "repository": "https://github.com/thedotmack/claude-mem",
+      "category": "agent-workflow",
+      "relationship": "Locally observed Claude Code memory plugin; cited as an optional stateful extension, not bundled here.",
+      "license": "Version-dependent: current upstream Apache-2.0; older locally registered marketplace source AGPL-3.0",
+      "accessed": "2026-08-23",
+      "evidence": "Installed claude-mem 12.0.1 cache plus locally registered marketplace checkout 6461d718f25fbe0b02daeda300bfcdcac6bbdb20",
+      "revision": "Installed package 12.0.1; marketplace source 6461d718f25fbe0b02daeda300bfcdcac6bbdb20",
+      "confidence": "high",
+      "notes": "Current upstream declares Apache-2.0. The older marketplace checkout declares AGPL-3.0, while the installed cache has no project-root LICENSE. Do not retroactively apply the current license to the installed snapshot."
+    },
+    {
+      "name": "Context Mode",
+      "repository": "https://github.com/mksglu/context-mode",
+      "category": "agent-workflow",
+      "relationship": "Locally observed context-virtualization MCP/plugin used to reduce large tool output in agent sessions.",
+      "license": "Elastic-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Local plugin setup",
+      "revision": "Installed 1.0.169; marketplace source 4d0e11053e6ad48c8c4497cdb5e5f0eec44209a9",
+      "confidence": "high",
+      "notes": "Historical references used the older name mksglu/claude-context-mode; the canonical repository is mksglu/context-mode."
+    },
+    {
+      "name": "Ponytail",
+      "repository": "https://github.com/DietrichGebert/ponytail",
+      "category": "agent-workflow",
+      "relationship": "Claude Code plugin used for minimal-solution and over-engineering review workflows.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical agent playbook recorded the exact marketplace install",
+      "confidence": "high"
+    },
+    {
+      "name": "nopus",
+      "repository": "https://github.com/Vistyy/nopus",
+      "category": "agent-workflow",
+      "relationship": "Historical deterministic prose-quality plugin named in the supplied setup inventory; cited as prior tooling, not bundled or activated by this kit.",
+      "license": "MIT",
+      "accessed": "2026-09-04",
+      "evidence": "Supplied setup inventory plus current upstream README and LICENSE",
+      "confidence": "high",
+      "notes": "scripts/check_claim_language.py is an independently authored, narrower receipt-proximity check; it was not copied or adapted from nopus."
+    },
+    {
+      "name": "Context7",
+      "repository": "https://github.com/upstash/context7",
+      "category": "agent-workflow",
+      "relationship": "MCP documentation source used for current library and framework references.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical MCP configuration and agent playbook",
+      "confidence": "high"
+    },
+    {
+      "name": "Mobbin MCP server",
+      "repository": "https://github.com/mobbin/mobbin-mcp-server",
+      "category": "agent-workflow",
+      "relationship": "Best-fit canonical repository for the Mobbin UI-reference workflow named in historical documentation.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical documentation names Mobbin but does not pin a repository or revision",
+      "confidence": "medium",
+      "notes": "The exact Mobbin integration was not recorded. This ledger does not claim use of the separate low-confidence mobbin/skills repository."
+    },
+    {
+      "name": "assistant-ui skills",
+      "repository": "https://github.com/assistant-ui/skills",
+      "category": "agent-workflow",
+      "relationship": "Source of 13 assistant-ui skills recorded by path and content hash in a historical skills lockfile.",
+      "license": "MIT",
+      "accessed": "2026-09-04",
+      "evidence": "Historical skills-lock.json with 13 SHA-256 content hashes",
+      "confidence": "high",
+      "notes": "Current upstream declares MIT. Citation still does not grant permission to copy an unreviewed historical snapshot without checking its revision."
+    },
+    {
+      "name": "Anthropic skills",
+      "repository": "https://github.com/anthropics/skills",
+      "category": "agent-workflow",
+      "relationship": "Source of the frontend-design skill used as a visual implementation authority.",
+      "license": "Apache-2.0 for skills/frontend-design; no root repository license detected",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend product-authority document",
+      "confidence": "high",
+      "notes": "License is scoped to the referenced skill, not asserted for every directory in the repository."
+    },
+    {
+      "name": "Fable Method",
+      "repository": "https://github.com/Sahir619/fable-method",
+      "category": "agent-workflow",
+      "relationship": "Source associated with installed proof-loop, method, and independent-judge workflow skills.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Installed skill names and historical workflow documents",
+      "confidence": "medium",
+      "notes": "The installed copy did not retain an upstream commit pin."
+    },
+    {
+      "name": "NodeKit",
+      "repository": "https://github.com/HomenShum/NodeKit",
+      "category": "agent-workflow",
+      "relationship": "Repository-contract and product-promotion workflow used to define proof and release gates.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical nodekit contract and promotion goal",
+      "confidence": "high"
+    },
+    {
+      "name": "Cloudflare OS",
+      "repository": "https://github.com/cloudflare/cloudflare-os",
+      "category": "agent-workflow",
+      "relationship": "Design-pattern inspiration for a locally authored add-dimension skill; no Cloudflare OS code was bundled.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical skill attribution header",
+      "confidence": "high"
+    },
+    {
+      "name": "drawio-skill",
+      "repository": "https://github.com/Agents365-ai/drawio-skill",
+      "category": "agent-workflow",
+      "relationship": "Installed agent skill for generating and validating editable draw.io diagrams.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Locally installed skill source",
+      "revision": "Local skill reports 1.14.0; copied snapshot has no upstream commit pin",
+      "confidence": "high"
+    },
+    {
+      "name": "draw.io Desktop",
+      "repository": "https://github.com/jgraph/drawio-desktop",
+      "category": "agent-workflow",
+      "relationship": "Native renderer/exporter used by drawio-skill for PNG, SVG, PDF, and editable diagram proof.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "drawio-skill runtime dependency and local application setup",
+      "confidence": "high"
+    },
+    {
+      "name": "Better PR Handoff",
+      "repository": "https://github.com/HomenShum/BetterPRHandoff",
+      "category": "agent-workflow",
+      "relationship": "Locally installed skill for readable commits, branches, pull requests, and change handoffs.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Locally copied easier-to-read-submissions skill",
+      "revision": "Local skill 1.0.0; upstream d30f1abc0ff0251000fedf1a3f25d0bad91bba6c",
+      "confidence": "high",
+      "notes": "The requested legacy repository name redirects to this canonical repository."
+    },
+    {
+      "name": "Motion Ladder",
+      "repository": "https://github.com/HomenShum/motion-ladder",
+      "category": "agent-workflow",
+      "relationship": "Locally installed skill for choosing the minimum justified UI motion level.",
+      "license": "NOASSERTION (public repository unavailable; local copy has no license)",
+      "accessed": "2026-08-23",
+      "evidence": "Locally installed skill source",
+      "confidence": "high",
+      "check": false,
+      "notes": "Historical repository URL returned 404 on 2026-08-23. The locally copied v1.0.0 skill remains evidence of use, but public provenance and license could not be established."
+    },
+    {
+      "name": "Probe First",
+      "repository": "https://github.com/HomenShum/probe-first",
+      "category": "agent-workflow",
+      "relationship": "Locally installed research-before-outreach skill.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Locally installed skill source",
+      "revision": "b6298c3f82f57666780bbc1e68ed6595fb97a6d1",
+      "confidence": "high"
+    },
+    {
+      "name": "Before/After Proof",
+      "repository": "https://github.com/HomenShum/before-after-proof",
+      "category": "agent-workflow",
+      "relationship": "Locally installed skill requiring before-and-after evidence for code changes.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Locally installed skill source",
+      "revision": "e25ab07804da6b410b9cf174284197dec5c1fc06",
+      "confidence": "high"
+    },
+    {
+      "name": "Graph Hop",
+      "repository": "https://github.com/HomenShum/graph-hop",
+      "category": "agent-workflow",
+      "relationship": "Installed cross-thread consultation workflow used to query prior design reasoning.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Global agent instructions and locally installed skill",
+      "revision": "Local dirty clone base 7674abcd627cfe89b0dc3975273f6a6a499b0d5f; upstream had advanced",
+      "confidence": "high"
+    },
+    {
+      "name": "Task Level Guide",
+      "repository": "https://github.com/HomenShum/task-level-guide",
+      "category": "agent-workflow",
+      "relationship": "Locally installed skill for classifying completed engineering tasks by scope and ownership.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Locally installed skill source",
+      "revision": "3ac089392b602d7c4626e821cc4937750cbc288e",
+      "confidence": "high"
+    },
+    {
+      "name": "Agentic UI QA",
+      "repository": "https://github.com/HomenShum/agentic-ui-qa",
+      "category": "agent-workflow",
+      "relationship": "Locally installed QA and dogfooding protocol for agentic application interfaces.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Two locally installed dirty snapshots",
+      "revision": "Local bases d58d0a509591cf9a5f5c4213e50554371e3bcc35 and d2b2aec91e7596a738f7c72aba2c14b168101a10",
+      "confidence": "high"
+    },
+    {
+      "name": "Web Interface Guidelines",
+      "repository": "https://github.com/vercel-labs/web-interface-guidelines",
+      "category": "agent-workflow",
+      "relationship": "Interaction-review authority used during frontend promotion.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend product-authority document",
+      "confidence": "high"
+    },
+    {
+      "name": "Web Quality Skills",
+      "repository": "https://github.com/addyosmani/web-quality-skills",
+      "category": "agent-workflow",
+      "relationship": "Accessibility, performance, best-practice, and web-quality audit skill authority.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend product-authority document",
+      "confidence": "high"
+    },
+    {
+      "name": "Playwright",
+      "repository": "https://github.com/microsoft/playwright",
+      "category": "agent-workflow",
+      "relationship": "Direct browser runtime and proof authority used by frontend journeys and accessibility checks.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Frontend development manifest and product proof workflow",
+      "confidence": "high"
+    },
+    {
+      "name": "Chrome DevTools MCP",
+      "repository": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "category": "agent-workflow",
+      "relationship": "Directly observed local Codex MCP server for Chrome inspection, debugging, and browser automation.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Local Codex MCP configuration",
+      "confidence": "high",
+      "notes": "Exact installed revision was not pinned."
+    },
+    {
+      "name": "Lightpanda Browser",
+      "repository": "https://github.com/lightpanda-io/browser",
+      "category": "agent-workflow",
+      "relationship": "Directly observed local Codex MCP/browser tool used for anonymous high-volume DOM extraction and replay.",
+      "license": "AGPL-3.0 with a commercial licensing option",
+      "accessed": "2026-08-23",
+      "evidence": "Local Codex MCP configuration",
+      "confidence": "high",
+      "notes": "Exact installed revision was not pinned."
+    },
+    {
+      "name": "Serena",
+      "repository": "https://github.com/oraios/serena",
+      "category": "agent-workflow",
+      "relationship": "Directly observed local Codex MCP server for symbol-level code retrieval, editing, and refactoring.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Local Codex MCP configuration",
+      "confidence": "high",
+      "notes": "Exact installed revision was not pinned."
+    },
+    {
+      "name": "Convex Backend",
+      "repository": "https://github.com/get-convex/convex-backend",
+      "category": "agent-workflow",
+      "relationship": "Canonical source behind the directly observed Convex CLI MCP integration.",
+      "license": "NOASSERTION (repository uses a custom or multi-part LICENSE.md; review the exact component and revision)",
+      "accessed": "2026-08-23",
+      "evidence": "Local Codex MCP configuration",
+      "confidence": "high",
+      "notes": "Exact installed CLI revision was not pinned."
+    },
+    {
+      "name": "GitHub MCP Server",
+      "repository": "https://github.com/github/github-mcp-server",
+      "category": "agent-workflow",
+      "relationship": "Directly observed local Codex MCP server for bounded GitHub repository and pull-request operations.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Local Codex MCP configuration",
+      "confidence": "high",
+      "notes": "Exact installed revision was not pinned."
+    },
+
+    {
+      "name": "uv",
+      "repository": "https://github.com/astral-sh/uv",
+      "category": "ci-audit-media",
+      "relationship": "Python environment, dependency lock, build, and command runner.",
+      "license": "MIT OR Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical setup, lockfile, Dockerfile, and CI workflows",
+      "revision": "0.9.18 in CI",
+      "confidence": "high"
+    },
+    {
+      "name": "setup-uv",
+      "repository": "https://github.com/astral-sh/setup-uv",
+      "category": "ci-audit-media",
+      "relationship": "GitHub Action used to install pinned uv and Python versions in CI.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical GitHub Actions workflows",
+      "revision": "20cfd1bf945f4377ade1205e4dbc17946fc9a30d (v10.0.1)",
+      "confidence": "high"
+    },
+    {
+      "name": "checkout",
+      "repository": "https://github.com/actions/checkout",
+      "category": "ci-audit-media",
+      "relationship": "GitHub Action used to check out source with persisted credentials disabled.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical workflows and this public setup-kit's validation workflow",
+      "revision": "3d3c42e5aac5ba805825da76410c181273ba90b1 (v7.0.1)",
+      "confidence": "high"
+    },
+    {
+      "name": "setup-python",
+      "repository": "https://github.com/actions/setup-python",
+      "category": "ci-audit-media",
+      "relationship": "SHA-pinned GitHub Action used by this public setup kit to install Python for validation.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Public setup-kit validation workflow",
+      "revision": "5fda3b95a4ea91299a34e894583c3862153e4b97 (v7.0.0)",
+      "confidence": "high"
+    },
+    {
+      "name": "Claude Code Action",
+      "repository": "https://github.com/anthropics/claude-code-action",
+      "category": "ci-audit-media",
+      "relationship": "GitHub Action used by a historical self-healing gate workflow for automated review and repair.",
+      "license": "MIT",
+      "accessed": "2026-09-04",
+      "evidence": "Sanitized historical GitHub Actions use declaration plus current upstream README and LICENSE",
+      "revision": "v1 tag reference; historical workflow did not pin a commit",
+      "confidence": "high"
+    },
+    {
+      "name": "SchemaStore",
+      "repository": "https://github.com/SchemaStore/schemastore",
+      "category": "ci-audit-media",
+      "relationship": "Source of the Claude Code settings JSON schema referenced by the public configuration templates.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Public setup-kit Claude settings templates",
+      "confidence": "high"
+    },
+    {
+      "name": "setup-node",
+      "repository": "https://github.com/actions/setup-node",
+      "category": "ci-audit-media",
+      "relationship": "GitHub Action used to install and cache Node.js for frontend gates.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical GitHub Actions workflows",
+      "revision": "820762786026740c76f36085b0efc47a31fe5020 (v7.0.0)",
+      "confidence": "high"
+    },
+    {
+      "name": "upload-artifact",
+      "repository": "https://github.com/actions/upload-artifact",
+      "category": "ci-audit-media",
+      "relationship": "GitHub Action used to retain evaluator reports and logs.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical GitHub Actions workflows",
+      "revision": "043fb46d1a93c77aae656e7c1c64a875d1fc6a0a (v7.0.1)",
+      "confidence": "high"
+    },
+    {
+      "name": "Langfuse Experiment Action",
+      "repository": "https://github.com/langfuse/experiment-action",
+      "category": "ci-audit-media",
+      "relationship": "Pinned GitHub Action used for hosted evaluation publication and regression gates.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical evaluation workflows",
+      "revision": "e1f126216d592429e76cef2223f9c57ba03aabe2 (v1.0.7)",
+      "confidence": "high"
+    },
+    {
+      "name": "shadcn/ui",
+      "repository": "https://github.com/shadcn-ui/ui",
+      "category": "ci-audit-media",
+      "relationship": "Component and design-system reference used during frontend composition.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical design-system and frontend workflow records",
+      "confidence": "high"
+    },
+    {
+      "name": "CodeTour",
+      "repository": "https://github.com/microsoft/codetour",
+      "category": "ci-audit-media",
+      "relationship": "VS Code walkthrough format used for repository tours.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical README and .tours artifacts",
+      "confidence": "high"
+    },
+    {
+      "name": "Knip",
+      "repository": "https://github.com/webpro-nl/knip",
+      "category": "ci-audit-media",
+      "relationship": "Frontend unused-file and dependency audit tool used during repository review.",
+      "license": "ISC",
+      "accessed": "2026-08-23",
+      "evidence": "Historical audit commands and reports",
+      "confidence": "high"
+    },
+    {
+      "name": "dependency-cruiser",
+      "repository": "https://github.com/sverweij/dependency-cruiser",
+      "category": "ci-audit-media",
+      "relationship": "Frontend dependency-graph and architecture audit tool.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical audit commands and reports",
+      "confidence": "high"
+    },
+    {
+      "name": "jscpd",
+      "repository": "https://github.com/kucherenko/jscpd",
+      "category": "ci-audit-media",
+      "relationship": "Duplicate-code audit tool used during repository review.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical audit commands and reports",
+      "confidence": "high"
+    },
+    {
+      "name": "Vulture",
+      "repository": "https://github.com/jendrikseipp/vulture",
+      "category": "ci-audit-media",
+      "relationship": "Python dead-code audit tool used during repository review.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical audit commands and reports",
+      "confidence": "high"
+    },
+    {
+      "name": "Lighthouse",
+      "repository": "https://github.com/GoogleChrome/lighthouse",
+      "category": "ci-audit-media",
+      "relationship": "Rendered web performance and accessibility measurement tool.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Retained frontend promotion commands and reports",
+      "revision": "13.4.1 in retained audit commands",
+      "confidence": "high"
+    },
+    {
+      "name": "axe-core npm packages",
+      "repository": "https://github.com/dequelabs/axe-core-npm",
+      "category": "ci-audit-media",
+      "relationship": "Direct Playwright and CLI accessibility audit packages.",
+      "license": "MPL-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Frontend development manifest and retained accessibility reports",
+      "revision": "4.13.0",
+      "confidence": "high"
+    },
+    {
+      "name": "Vercel CLI",
+      "repository": "https://github.com/vercel/vercel",
+      "category": "ci-audit-media",
+      "relationship": "Deployment CLI used for preview, production, and rollback workflows.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical deployment runbook",
+      "confidence": "high"
+    },
+    {
+      "name": "FFmpeg",
+      "repository": "https://github.com/FFmpeg/FFmpeg",
+      "category": "ci-audit-media",
+      "relationship": "Media encoding and verification tool used for product walkthrough artifacts.",
+      "license": "LGPL-2.1-or-later for the default core; optional GPL components change obligations",
+      "accessed": "2026-08-23",
+      "evidence": "Historical media-generation and verification commands",
+      "confidence": "high"
+    },
+    {
+      "name": "Cytoscape.js",
+      "repository": "https://github.com/cytoscape/cytoscape.js",
+      "category": "ci-audit-media",
+      "relationship": "Graph renderer vendored as a minified runtime asset.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Vendored bundle header and graph runtime",
+      "revision": "3.34.0",
+      "confidence": "high"
+    },
+    {
+      "name": "Geist Font",
+      "repository": "https://github.com/vercel/geist-font",
+      "category": "ci-audit-media",
+      "relationship": "Frontend font asset source.",
+      "license": "OFL-1.1",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend asset and design records",
+      "confidence": "high"
+    },
+    {
+      "name": "FeatureClipStudio",
+      "repository": "https://github.com/HomenShum/FeatureClipStudio",
+      "category": "ci-audit-media",
+      "relationship": "Tool used to generate feature walkthrough media and proof artifacts.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical README attribution and generated media workflow",
+      "confidence": "high",
+      "notes": "An older repository name redirected to this canonical repository."
+    },
+    {
+      "name": "Piper (current OHF implementation)",
+      "repository": "https://github.com/OHF-Voice/piper1-gpl",
+      "category": "ci-audit-media",
+      "relationship": "One possible upstream for a historically invoked `python -m piper` text-to-speech step.",
+      "license": "GPL-3.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical media command named Piper but did not record its package revision",
+      "confidence": "low",
+      "notes": "Included to expose ambiguity, not to assert that this implementation produced the artifact."
+    },
+    {
+      "name": "Piper (archived rhasspy implementation)",
+      "repository": "https://github.com/rhasspy/piper",
+      "category": "ci-audit-media",
+      "relationship": "Alternative archived upstream that may match the historically invoked Piper package.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical media command did not record the installed package revision",
+      "confidence": "low",
+      "notes": "Repository is archived. The exact Piper implementation and voice-model license remain unresolved."
+    },
+
+    {
+      "name": "FastAPI",
+      "repository": "https://github.com/fastapi/fastapi",
+      "category": "python",
+      "relationship": "Direct Python dependency for HTTP application surfaces.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Uvicorn",
+      "repository": "https://github.com/Kludex/uvicorn",
+      "category": "python",
+      "relationship": "Direct Python dependency and production ASGI server.",
+      "license": "BSD-3-Clause",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest, Dockerfile, and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "HTTPX",
+      "repository": "https://github.com/encode/httpx",
+      "category": "python",
+      "relationship": "Direct Python dependency for bounded external HTTP requests.",
+      "license": "BSD-3-Clause",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "NumPy",
+      "repository": "https://github.com/numpy/numpy",
+      "category": "python",
+      "relationship": "Direct Python dependency for vector and numeric operations.",
+      "license": "BSD-3-Clause for NumPy; bundled components may carry additional notices",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Pydantic",
+      "repository": "https://github.com/pydantic/pydantic",
+      "category": "python",
+      "relationship": "Direct Python dependency for validated request, response, and workflow contracts.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "OpenAI Python",
+      "repository": "https://github.com/openai/openai-python",
+      "category": "python",
+      "relationship": "Direct Python SDK dependency for model planning and evaluation.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "python-dotenv",
+      "repository": "https://github.com/theskumar/python-dotenv",
+      "category": "python",
+      "relationship": "Direct Python dependency for optional local environment loading.",
+      "license": "BSD-3-Clause",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "assistant-ui",
+      "repository": "https://github.com/assistant-ui/assistant-ui",
+      "category": "python",
+      "relationship": "Monorepo behind the direct Python assistant-stream package and direct frontend assistant-ui packages, templates, and shimmer plugin.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python and frontend manifests, lockfiles, and template history",
+      "confidence": "high"
+    },
+    {
+      "name": "LangGraph",
+      "repository": "https://github.com/langchain-ai/langgraph",
+      "category": "python",
+      "relationship": "Direct Python dependency for workflow graphs and PostgreSQL checkpoints.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Model Context Protocol Python SDK",
+      "repository": "https://github.com/modelcontextprotocol/python-sdk",
+      "category": "python",
+      "relationship": "Direct Python dependency for the stdio MCP server surface.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and MCP implementation",
+      "confidence": "high"
+    },
+    {
+      "name": "Langfuse Python SDK",
+      "repository": "https://github.com/langfuse/langfuse-python",
+      "category": "python",
+      "relationship": "Direct Python dependency for evaluation tracing and hosted experiment publication.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest, lockfile, and evaluation workflows",
+      "confidence": "high"
+    },
+    {
+      "name": "PyJWT",
+      "repository": "https://github.com/jpadilla/pyjwt",
+      "category": "python",
+      "relationship": "Direct Python dependency for authenticated workflow token validation.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "pytest",
+      "repository": "https://github.com/pytest-dev/pytest",
+      "category": "python",
+      "relationship": "Direct development dependency and scenario-test runner.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python development manifest and CI",
+      "confidence": "high"
+    },
+    {
+      "name": "pytest-asyncio",
+      "repository": "https://github.com/pytest-dev/pytest-asyncio",
+      "category": "python",
+      "relationship": "Direct development dependency for async scenario tests.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python development manifest and CI",
+      "confidence": "high"
+    },
+    {
+      "name": "asyncpg",
+      "repository": "https://github.com/MagicStack/asyncpg",
+      "category": "python",
+      "relationship": "Direct optional Python dependency for PostgreSQL persistence.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python optional-dependency manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Psycopg",
+      "repository": "https://github.com/psycopg/psycopg",
+      "category": "python",
+      "relationship": "Direct optional Python dependency for PostgreSQL checkpointing and pooling.",
+      "license": "LGPL-3.0-only",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python optional-dependency manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Neo4j Python Driver",
+      "repository": "https://github.com/neo4j/neo4j-python-driver",
+      "category": "python",
+      "relationship": "Direct optional Python dependency for the graph index.",
+      "license": "Apache-2.0 AND Python-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python optional-dependency manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Model2Vec",
+      "repository": "https://github.com/MinishLab/model2vec",
+      "category": "python",
+      "relationship": "Direct build-time-only Python dependency used to bake static entity embeddings.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python optional-dependency manifest and build script",
+      "confidence": "high",
+      "notes": "The separately downloaded model artifact has its own model-card terms and is not represented by this code license."
+    },
+    {
+      "name": "Hatch",
+      "repository": "https://github.com/pypa/hatch",
+      "category": "python",
+      "relationship": "Build backend and packaging tool declared by the Python project.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical Python build-system declaration and lockfile",
+      "confidence": "high"
+    },
+
+    {
+      "name": "Vercel AI SDK",
+      "repository": "https://github.com/vercel/ai",
+      "category": "frontend",
+      "relationship": "Direct frontend dependencies for streamed AI chat state and protocol handling.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Base UI",
+      "repository": "https://github.com/mui/base-ui",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for accessible unstyled UI primitives.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "OpenTelemetry JavaScript",
+      "repository": "https://github.com/open-telemetry/opentelemetry-js",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for telemetry API contracts.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Sigma.js",
+      "repository": "https://github.com/jacomyal/sigma.js",
+      "category": "frontend",
+      "relationship": "Direct frontend graph rendering and node-border package source.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "WorkOS AuthKit for Next.js",
+      "repository": "https://github.com/workos/authkit-nextjs",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for authenticated Next.js routes.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "WorkOS Node SDK",
+      "repository": "https://github.com/workos/workos-node",
+      "category": "frontend",
+      "relationship": "Direct frontend-server dependency for WorkOS API integration.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Class Variance Authority",
+      "repository": "https://github.com/joe-bell/cva",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for component variant composition.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "clsx",
+      "repository": "https://github.com/lukeed/clsx",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for conditional class-name composition.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Graphology",
+      "repository": "https://github.com/graphology/graphology",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency source for graph data structures and graphology-layout-forceatlas2.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Lucide",
+      "repository": "https://github.com/lucide-icons/lucide",
+      "category": "frontend",
+      "relationship": "Direct frontend icon dependency.",
+      "license": "ISC",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Next.js",
+      "repository": "https://github.com/vercel/next.js",
+      "category": "frontend",
+      "relationship": "Direct frontend framework and production server.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest, lockfile, and Dockerfile",
+      "revision": "16.3.0 in the audited manifest",
+      "confidence": "high"
+    },
+    {
+      "name": "React",
+      "repository": "https://github.com/react/react",
+      "category": "frontend",
+      "relationship": "Direct frontend UI runtime dependency.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "remark-gfm",
+      "repository": "https://github.com/remarkjs/remark-gfm",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for GitHub-flavored Markdown rendering.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "tailwind-merge",
+      "repository": "https://github.com/dcastil/tailwind-merge",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for deterministic Tailwind class conflict resolution.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "tw-animate-css",
+      "repository": "https://github.com/Wombosvideo/tw-animate-css",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for Tailwind animation utilities.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Zustand",
+      "repository": "https://github.com/pmndrs/zustand",
+      "category": "frontend",
+      "relationship": "Direct frontend dependency for client state management.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "Tailwind CSS",
+      "repository": "https://github.com/tailwindlabs/tailwindcss",
+      "category": "frontend",
+      "relationship": "Direct frontend styling and PostCSS dependency.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend development manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "DefinitelyTyped",
+      "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+      "category": "frontend",
+      "relationship": "Source repository for direct @types/node, @types/react, and @types/react-dom development packages.",
+      "license": "MIT for the referenced package declarations; individual definitions track upstream projects",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend development manifest and lockfile",
+      "confidence": "high"
+    },
+    {
+      "name": "esbuild",
+      "repository": "https://github.com/evanw/esbuild",
+      "category": "frontend",
+      "relationship": "Direct frontend build dependency and compiler used by browser-model gate tests.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend development manifest, lockfile, and test harness",
+      "confidence": "high"
+    },
+    {
+      "name": "Oxc",
+      "repository": "https://github.com/oxc-project/oxc",
+      "category": "frontend",
+      "relationship": "Direct frontend formatter and linter toolchain behind oxfmt and oxlint.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend development manifest and scripts",
+      "confidence": "high"
+    },
+    {
+      "name": "TypeScript",
+      "repository": "https://github.com/microsoft/TypeScript",
+      "category": "frontend",
+      "relationship": "Direct frontend type checker and compiler dependency.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend development manifest and CI",
+      "confidence": "high"
+    },
+
+    {
+      "name": "pgvector",
+      "repository": "https://github.com/pgvector/pgvector",
+      "category": "containers",
+      "relationship": "Pinned PostgreSQL image extension used by CI and local compose for vector storage.",
+      "license": "PostgreSQL License",
+      "accessed": "2026-08-23",
+      "evidence": "Historical compose and CI service image",
+      "revision": "0.8.6-pg16-bookworm (CI image also digest-pinned)",
+      "confidence": "high"
+    },
+    {
+      "name": "Postgres Docker Official Image",
+      "repository": "https://github.com/docker-library/postgres",
+      "category": "containers",
+      "relationship": "Source definitions for the directly referenced postgres:16-alpine development image.",
+      "license": "MIT for image definitions; PostgreSQL itself has the PostgreSQL License",
+      "accessed": "2026-08-23",
+      "evidence": "Historical local compose image",
+      "revision": "16-alpine",
+      "confidence": "high"
+    },
+    {
+      "name": "PostgreSQL",
+      "repository": "https://github.com/postgres/postgres",
+      "category": "containers",
+      "relationship": "Database runtime delivered by the directly used PostgreSQL and pgvector container images.",
+      "license": "PostgreSQL License",
+      "accessed": "2026-08-23",
+      "evidence": "Historical local and CI database services",
+      "confidence": "high"
+    },
+    {
+      "name": "Neo4j Docker image",
+      "repository": "https://github.com/neo4j/docker-neo4j",
+      "category": "containers",
+      "relationship": "Source for the directly referenced neo4j:5-community compose image.",
+      "license": "Apache-2.0 for image tooling; bundled Neo4j edition terms are separate",
+      "accessed": "2026-08-23",
+      "evidence": "Historical local and production compose images",
+      "revision": "5-community",
+      "confidence": "high"
+    },
+    {
+      "name": "Neo4j",
+      "repository": "https://github.com/neo4j/neo4j",
+      "category": "containers",
+      "relationship": "Community graph-database runtime delivered by the directly used Neo4j container image.",
+      "license": "GPL-3.0-only for Community Edition; Enterprise Edition uses separate commercial terms",
+      "accessed": "2026-08-23",
+      "evidence": "Historical optional graph service and compose image",
+      "confidence": "high"
+    },
+    {
+      "name": "Python Docker Official Image",
+      "repository": "https://github.com/docker-library/python",
+      "category": "containers",
+      "relationship": "Source definitions for directly used python:3.13-slim-bookworm build and runtime images.",
+      "license": "MIT for image definitions; bundled software retains its own licenses",
+      "accessed": "2026-08-23",
+      "evidence": "Historical backend Dockerfile",
+      "revision": "3.13-slim-bookworm",
+      "confidence": "high"
+    },
+    {
+      "name": "Node.js Docker Official Image",
+      "repository": "https://github.com/nodejs/docker-node",
+      "category": "containers",
+      "relationship": "Source definitions for directly used node:22-bookworm-slim frontend images.",
+      "license": "MIT for image definitions; bundled software retains its own licenses",
+      "accessed": "2026-08-23",
+      "evidence": "Historical frontend Dockerfile",
+      "revision": "22-bookworm-slim",
+      "confidence": "high"
+    },
+
+    {
+      "name": "Prime Agent",
+      "repository": "https://github.com/PrimeIntellect-ai/prime-agent",
+      "category": "research-only-rejected",
+      "relationship": "Research-only comparison for agent architecture; not installed, vendored, or shipped.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical architecture research notes",
+      "confidence": "high"
+    },
+    {
+      "name": "HyperAgents",
+      "repository": "https://github.com/facebookresearch/HyperAgents",
+      "category": "research-only-rejected",
+      "relationship": "Research-only influence for hierarchical agent design; no source code was copied.",
+      "license": "CC-BY-NC-SA-4.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical architecture research and canonical-source correction",
+      "confidence": "high",
+      "notes": "Non-commercial and ShareAlike terms make this unsuitable as a normal production-code dependency."
+    },
+    {
+      "name": "Claw Code",
+      "repository": "https://github.com/ultraworkers/claw-code",
+      "category": "research-only-rejected",
+      "relationship": "Research-only agent-tool comparison; explicitly not adopted or copied.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical research notes",
+      "confidence": "high",
+      "notes": "Past review treated provenance as requiring a fresh, revision-specific audit before any adoption."
+    },
+    {
+      "name": "Humanizer",
+      "repository": "https://github.com/blader/humanizer",
+      "category": "research-only-rejected",
+      "relationship": "Research-only writing-style comparison; not installed or copied into the application.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical workflow research notes",
+      "confidence": "high"
+    },
+    {
+      "name": "GraphRAG",
+      "repository": "https://github.com/microsoft/graphrag",
+      "category": "research-only-rejected",
+      "relationship": "Research-only graph-retrieval architecture comparison; not a runtime dependency.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical graph architecture research",
+      "confidence": "high"
+    },
+    {
+      "name": "Graphiti",
+      "repository": "https://github.com/getzep/graphiti",
+      "category": "research-only-rejected",
+      "relationship": "Research-only temporal knowledge-graph comparison; not a runtime dependency.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical graph architecture research",
+      "confidence": "high"
+    },
+    {
+      "name": "Deep Agents",
+      "repository": "https://github.com/langchain-ai/deepagents",
+      "category": "research-only-rejected",
+      "relationship": "Research-only agent-harness comparison; not installed or shipped.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical agent architecture research",
+      "confidence": "high"
+    },
+    {
+      "name": "Kuzu",
+      "repository": "https://github.com/kuzudb/kuzu",
+      "category": "research-only-rejected",
+      "relationship": "Evaluated and rejected graph-database option; not a runtime dependency.",
+      "license": "MIT",
+      "accessed": "2026-08-23",
+      "evidence": "Historical graph storage comparison",
+      "confidence": "high",
+      "notes": "Repository was archived when rechecked."
+    },
+    {
+      "name": "HyperAgent (FSoft-AI4Code)",
+      "repository": "https://github.com/FSoft-AI4Code/HyperAgent",
+      "category": "research-only-rejected",
+      "relationship": "Historical name-collision false lead; rejected after identifying Meta's HyperAgents as the intended source.",
+      "license": "Apache-2.0",
+      "accessed": "2026-08-23",
+      "evidence": "Historical canonical-source correction",
+      "confidence": "high"
+    }
+  ]
+}

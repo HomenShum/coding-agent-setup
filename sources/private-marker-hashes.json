@@ -1,0 +1,13 @@
+{
+  "algorithm": "sha256-lower-nfkc",
+  "markers": [
+    {
+      "length": 7,
+      "digest": "0c547a7d55e5dd4b17e94d1bf5624ef5f4538be0a2d82e441213fe2f770cc97a"
+    },
+    {
+      "length": 10,
+      "digest": "0e0c3be8df9621019e16cdd9043d63ea5b8c070e2e6ddf471a5d98b5cfeb81b6"
+    }
+  ]
+}

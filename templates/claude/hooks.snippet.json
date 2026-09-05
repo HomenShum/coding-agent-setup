@@ -1,0 +1,59 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/scripts/self_review_hook.py",
+              "--host",
+              "claude",
+              "--event",
+              "session-start"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/scripts/self_review_hook.py",
+              "--host",
+              "claude",
+              "--event",
+              "pre-compact"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/scripts/self_review_hook.py",
+              "--host",
+              "claude",
+              "--event",
+              "stop"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

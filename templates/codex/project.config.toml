@@ -1,0 +1,19 @@
+# Copy to .codex/config.toml only in a trusted repository.
+# This project server inherits the user's environment; never commit a value.
+# Native Windows paths in TOML must use forward slashes, doubled backslashes,
+# or single-quoted literal strings; never paste an ordinary C:\path basic string.
+[mcp_servers.project_tools]
+command = "[PYTHON_EXECUTABLE]"
+args = ["-m", "[PROJECT_MCP_MODULE]"]
+cwd = "[ABSOLUTE_PROJECT_ROOT]"
+enabled = false
+startup_timeout_sec = 10
+tool_timeout_sec = 30
+
+# Project-scoped remote example. The variable name is committed; its value is not.
+[mcp_servers.project-remote]
+url = "https://mcp.example.invalid/mcp"
+bearer_token_env_var = "EXAMPLE_MCP_TOKEN"
+enabled = false
+startup_timeout_sec = 10
+tool_timeout_sec = 30

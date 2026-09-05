@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Run Constrained Worker","short_description":"Bound worker authority, runtime, and receipts","default_prompt":"Use $run-constrained-worker to execute this one bounded worker job."}}

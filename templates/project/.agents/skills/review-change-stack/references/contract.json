@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "review-change-stack",
+  "trigger": "Use when dependent branches or reviews must be inspected in resolved parent-to-child order with one receipt per change and one stack verdict.",
+  "refusal": "Refuse to invent dependency order or provider metadata when the base cannot be resolved; mark the stack blocked or metadata unverified instead.",
+  "inputs": [
+    "repository_path",
+    "stack_items",
+    "base_revision",
+    "review_scope",
+    "proof_commands",
+    "provider_metadata"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

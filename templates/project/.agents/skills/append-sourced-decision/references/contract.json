@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "skill": "append-sourced-decision",
+  "trigger": "Use when an authorized decision or correction must be appended to an existing durable decision ledger with its supporting sources.",
+  "refusal": "Refuse requests to delete or rewrite prior decisions, and stop when the ledger, accountable owner, decision text, or source evidence is unavailable.",
+  "inputs": [
+    "ledger_path",
+    "decision_statement",
+    "decision_owner",
+    "source_evidence",
+    "supersedes_id_or_none"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

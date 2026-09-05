@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "decide-ship-skip-defer",
+  "trigger": "Use when a bounded product proposal needs one explicit SHIP, SKIP, or DEFER recommendation tied to a real user outcome and proof.",
+  "refusal": "Refuse SHIP when the user, job, scope, proof, owner, or rollback is undefined, and refuse to turn DEFER into an unbounded research backlog.",
+  "inputs": [
+    "user_persona",
+    "user_job",
+    "proposal",
+    "existing_capability",
+    "success_metric",
+    "constraints"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

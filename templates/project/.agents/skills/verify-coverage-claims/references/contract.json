@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "skill": "verify-coverage-claims",
+  "trigger": "Use when a finite cross-artifact coverage claim must trace every claimed item through source, implementation, realistic test, and observed proof.",
+  "refusal": "Refuse to claim full coverage when the denominator or exclusions are undefined, rows are sampled, or any source-to-proof link cannot be replayed.",
+  "inputs": [
+    "coverage_claim",
+    "claimed_items",
+    "denominator",
+    "exclusions",
+    "source_index",
+    "implementation_index",
+    "test_index",
+    "proof_index"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

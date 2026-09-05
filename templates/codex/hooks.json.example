@@ -1,0 +1,43 @@
+{
+  "description": "Disabled example. Review before copying to .codex/hooks.json.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/self_review_hook.py\" --host codex --event session-start",
+            "commandWindows": "powershell.exe -NoProfile -NonInteractive -Command $ErrorActionPreference='Stop'; $r=git rev-parse --show-toplevel; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Set-Location -LiteralPath $r; python scripts/self_review_hook.py --host codex --event session-start; exit $LASTEXITCODE",
+            "timeout": 5,
+            "additionalContextLimit": 2500
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/self_review_hook.py\" --host codex --event pre-compact",
+            "commandWindows": "powershell.exe -NoProfile -NonInteractive -Command $ErrorActionPreference='Stop'; $r=git rev-parse --show-toplevel; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Set-Location -LiteralPath $r; python scripts/self_review_hook.py --host codex --event pre-compact; exit $LASTEXITCODE",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/scripts/self_review_hook.py\" --host codex --event stop",
+            "commandWindows": "powershell.exe -NoProfile -NonInteractive -Command $ErrorActionPreference='Stop'; $r=git rev-parse --show-toplevel; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Set-Location -LiteralPath $r; python scripts/self_review_hook.py --host codex --event stop; exit $LASTEXITCODE",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

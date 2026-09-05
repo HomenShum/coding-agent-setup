@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Verify Coverage Claims","short_description":"Trace coverage claims to four evidence layers","default_prompt":"Use $verify-coverage-claims to test this coverage statement item by item."}}

@@ -1,0 +1,18 @@
+# Generated host mirror; `.agents/skills` is the canonical source.
+.claude/skills/
+.claude/worktrees/
+
+# Host-private overrides and local environment values; publish only examples.
+.claude/settings.local.json
+CLAUDE.local.md
+.env
+.env.*
+!.env.example
+
+# Bounded local hook state; never publish checkpoints or session fingerprints.
+.agent-local/
+
+# Python proof and test caches created by the documented commands.
+__pycache__/
+*.py[cod]
+.pytest_cache/

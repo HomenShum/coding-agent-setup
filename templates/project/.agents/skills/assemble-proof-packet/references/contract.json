@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "assemble-proof-packet",
+  "trigger": "Use after implementation when a reviewer needs a bounded handoff tying the original request to raw changes, replayable proof, artifacts, and risks.",
+  "refusal": "Refuse to assert completion when the original request, changed scope, raw diff, or named proof is unavailable; record inaccessible checks as unverified instead of inventing them.",
+  "inputs": [
+    "original_request",
+    "changed_scope",
+    "raw_diff",
+    "proof_results",
+    "artifact_index",
+    "residual_risks"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

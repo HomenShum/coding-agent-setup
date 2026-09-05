@@ -1,0 +1,12 @@
+{
+  "mcpAllowlist": [],
+  "terminalAllowlist": [],
+  "autoRun": {
+    "allow_instructions": [],
+    "block_instructions": [
+      "Do not read, write, print, copy, or transmit any .env file.",
+      "Do not read, write, print, copy, or transmit files under any secrets directory.",
+      "Do not read, write, print, copy, or transmit private key files."
+    ]
+  }
+}

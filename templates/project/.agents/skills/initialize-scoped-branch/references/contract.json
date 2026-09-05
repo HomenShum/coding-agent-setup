@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "initialize-scoped-branch",
+  "trigger": "Use only when the user explicitly requested branch work or the repository workflow requires a new branch for the named outcome.",
+  "refusal": "Refuse when overlapping uncommitted work cannot be preserved, the intended base is unresolved, or branch creation authority is absent; branch creation never implies commit or push authority.",
+  "inputs": [
+    "repository_path",
+    "requested_outcome",
+    "base_revision",
+    "branch_name",
+    "owned_paths",
+    "named_proof"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

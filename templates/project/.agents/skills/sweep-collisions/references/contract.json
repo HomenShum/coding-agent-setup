@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "sweep-collisions",
+  "trigger": "Use before editing a contested seam when repository work, active reviews, or automation may overlap the same files or contract.",
+  "refusal": "Refuse to call unavailable sources clear or broaden the sweep into messages, tickets, or remote mutations without explicit authority.",
+  "inputs": [
+    "change_scope",
+    "repository_path",
+    "search_terms",
+    "time_boundary",
+    "work_sources",
+    "automation_sources"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

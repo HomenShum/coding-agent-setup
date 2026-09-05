@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "planner-workers-judge",
+  "trigger": "Use for at least three independent evidence lenses or a consequential completion claim that materially benefits from a separate adversarial judge.",
+  "refusal": "Refuse when worker lanes share conflicting write scopes, no fresh judge is available, or ordinary sequential work would provide the same proof with less coordination.",
+  "inputs": [
+    "numbered_claims",
+    "worker_lenses",
+    "mutation_policy",
+    "worker_cap",
+    "judge_brief",
+    "proof_commands"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Run Deterministic Preflight","short_description":"Execute fail-closed review gates and mutations","default_prompt":"Use $run-deterministic-preflight to run and interpret this project's seven-layer gate."}}

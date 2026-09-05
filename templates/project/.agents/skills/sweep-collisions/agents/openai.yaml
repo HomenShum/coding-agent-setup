@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Sweep Collisions","short_description":"Find overlapping work before implementation","default_prompt":"Use $sweep-collisions to produce a bounded overlap receipt for this seam."}}

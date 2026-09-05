@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Capture UI Before After","short_description":"Collect comparable rendered UI evidence","default_prompt":"Use $capture-ui-before-after to prove this visible change at fixed states and viewports."}}

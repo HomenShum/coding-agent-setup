@@ -1,0 +1,27 @@
+# Personal Codex starting point. Review every permission for your environment.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search = "disabled"
+
+[sandbox_workspace_write]
+network_access = false
+
+[shell_environment_policy]
+inherit = "core"
+ignore_default_excludes = false
+
+# Disabled examples: enable only after reviewing the named server.
+[mcp_servers.example_local]
+command = "[PYTHON_EXECUTABLE]"
+args = ["-m", "[INSTALLED_MCP_MODULE]"]
+env_vars = ["EXAMPLE_API_KEY"]
+enabled = false
+startup_timeout_sec = 10
+tool_timeout_sec = 30
+
+[mcp_servers.example_remote]
+url = "https://mcp.example.invalid/mcp"
+bearer_token_env_var = "EXAMPLE_MCP_TOKEN"
+enabled = false
+startup_timeout_sec = 10
+tool_timeout_sec = 30

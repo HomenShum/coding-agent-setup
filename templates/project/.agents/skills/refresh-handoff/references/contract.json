@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skill": "refresh-handoff",
+  "trigger": "Use immediately before yielding, compacting, or switching hosts when the next context needs current ownership, state, proof, and one next action.",
+  "refusal": "Refuse to include prompts, transcripts, credentials, private paths, or a full diff, and mark continuity blocked when current state or proof cannot be verified.",
+  "inputs": [
+    "current_request",
+    "owner_role",
+    "working_tree_digest",
+    "existing_handoff",
+    "named_proof",
+    "changed_files",
+    "next_action"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

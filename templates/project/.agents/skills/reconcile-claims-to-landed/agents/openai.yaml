@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Reconcile Claims to Landed","short_description":"Compare status claims with observed system state","default_prompt":"Use $reconcile-claims-to-landed to audit these completion claims against real artifacts."}}

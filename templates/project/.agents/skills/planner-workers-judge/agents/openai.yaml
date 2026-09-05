@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Planner Workers Judge","short_description":"Coordinate evidence workers and adversarial review","default_prompt":"Use $planner-workers-judge to verify these numbered claims with bounded workers and a fresh judge."}}

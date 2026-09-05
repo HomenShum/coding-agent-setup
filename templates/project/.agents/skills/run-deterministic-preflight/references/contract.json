@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skill": "run-deterministic-preflight",
+  "trigger": "Use before review when the checked-in seven-layer preflight and its deliberate mutation proof must be replayed for the current change.",
+  "refusal": "Refuse to weaken checks, rewrite expected values merely to obtain green output, or convert missing configuration or proof from NO_GATE into PASS.",
+  "inputs": [
+    "project_root",
+    "preflight_config",
+    "runtime_requirements",
+    "selftest_commands",
+    "visual_disposition",
+    "self_review_receipt",
+    "mutation_proof"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

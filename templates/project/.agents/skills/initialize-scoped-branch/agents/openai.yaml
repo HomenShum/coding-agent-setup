@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Initialize Scoped Branch","short_description":"Start branch work without losing user changes","default_prompt":"Use $initialize-scoped-branch to create a safe branch for this bounded change."}}

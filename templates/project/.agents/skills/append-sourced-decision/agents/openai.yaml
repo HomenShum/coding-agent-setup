@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Append Sourced Decision","short_description":"Record decisions without erasing history","default_prompt":"Use $append-sourced-decision to add this evidence-backed decision to the project ledger."}}

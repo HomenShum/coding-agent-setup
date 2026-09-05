@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Review Change Stack","short_description":"Review dependent changes in ancestry order","default_prompt":"Use $review-change-stack to verify this branch stack from base to tip."}}

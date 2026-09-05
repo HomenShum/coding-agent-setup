@@ -1,0 +1,345 @@
+{
+  "accessed": "2026-09-04",
+  "sources": [
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex CLI installation and use",
+      "url": "https://learn.chatgpt.com/docs/codex/cli"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex CLI authentication and status",
+      "url": "https://learn.chatgpt.com/docs/auth?surface=cli"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex POSIX installer entrypoint",
+      "url": "https://chatgpt.com/codex/install.sh"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex Windows PowerShell installer entrypoint",
+      "url": "https://chatgpt.com/codex/install.ps1"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex POSIX installer redirect target",
+      "url": "https://releases.openai.com/codex/install.sh"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex Windows PowerShell installer redirect target",
+      "url": "https://releases.openai.com/codex/install.ps1"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex configuration",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-basic"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex configuration reference",
+      "url": "https://learn.chatgpt.com/docs/config-file/config-reference"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "AGENTS.md discovery",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex subagents",
+      "url": "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex lifecycle hooks",
+      "url": "https://learn.chatgpt.com/docs/hooks"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Model Context Protocol",
+      "url": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Model Context Protocol in the Codex app",
+      "url": "https://learn.chatgpt.com/docs/extend/mcp?surface=app"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Deprecated Codex MCP server and maintained Claude Code bridge",
+      "url": "https://learn.chatgpt.com/docs/mcp-server"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex skills",
+      "url": "https://learn.chatgpt.com/docs/build-skills"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "ChatGPT desktop app for Windows",
+      "url": "https://learn.chatgpt.com/docs/windows/windows-app"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex Windows sandbox",
+      "url": "https://learn.chatgpt.com/docs/windows/windows-sandbox"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Codex on WSL",
+      "url": "https://learn.chatgpt.com/docs/windows/wsl"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "ChatGPT desktop app for Linux",
+      "url": "https://learn.chatgpt.com/docs/linux/linux-app"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "ChatGPT desktop app",
+      "url": "https://learn.chatgpt.com/docs/app"
+    },
+    {
+      "vendor": "OpenAI",
+      "topic": "Importing other agent history",
+      "url": "https://learn.chatgpt.com/docs/import"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code installation",
+      "url": "https://code.claude.com/docs/en/setup"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code advanced installation",
+      "url": "https://code.claude.com/docs/en/installation"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code CLI commands and authentication status",
+      "url": "https://code.claude.com/docs/en/cli-usage"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code current CLI reference and doctor command",
+      "url": "https://code.claude.com/docs/en/cli-reference"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code installation troubleshooting and PATH recovery",
+      "url": "https://code.claude.com/docs/en/troubleshoot-install"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code POSIX installer entrypoint",
+      "url": "https://claude.ai/install.sh"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Windows PowerShell installer entrypoint",
+      "url": "https://claude.ai/install.ps1"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Windows CMD installer entrypoint",
+      "url": "https://claude.ai/install.cmd"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code POSIX installer redirect target",
+      "url": "https://downloads.claude.ai/claude-code-releases/bootstrap.sh"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Windows PowerShell installer redirect target",
+      "url": "https://downloads.claude.ai/claude-code-releases/bootstrap.ps1"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Windows CMD installer redirect target",
+      "url": "https://downloads.claude.ai/claude-code-releases/bootstrap.cmd"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code settings",
+      "url": "https://code.claude.com/docs/en/settings"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code permission rules and recursive path patterns",
+      "url": "https://code.claude.com/docs/en/permissions"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code memory and imports",
+      "url": "https://code.claude.com/docs/en/memory"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code isolated worktrees and ignore path",
+      "url": "https://code.claude.com/docs/en/worktrees"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code subagents",
+      "url": "https://code.claude.com/docs/en/sub-agents"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code tools and native PowerShell support",
+      "url": "https://code.claude.com/docs/en/tools-reference"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Model Context Protocol",
+      "url": "https://code.claude.com/docs/en/mcp"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code hooks guide",
+      "url": "https://code.claude.com/docs/en/hooks-guide"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code hooks reference",
+      "url": "https://code.claude.com/docs/en/hooks"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code skills",
+      "url": "https://code.claude.com/docs/en/skills"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code plugins",
+      "url": "https://code.claude.com/docs/en/plugins"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Desktop quickstart",
+      "url": "https://code.claude.com/docs/en/desktop-quickstart"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Desktop configuration and CLI precedence",
+      "url": "https://code.claude.com/docs/en/desktop"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code Desktop with WSL repositories",
+      "url": "https://code.claude.com/docs/en/desktop-wsl"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Desktop for Linux beta requirements",
+      "url": "https://code.claude.com/docs/en/desktop-linux"
+    },
+    {
+      "vendor": "Anthropic",
+      "topic": "Claude Code platforms and integrations",
+      "url": "https://code.claude.com/docs/en/platforms"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor desktop downloads for macOS, Windows, and Linux",
+      "url": "https://cursor.com/download"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor desktop installation, sign-in, and first-project quickstart",
+      "url": "https://cursor.com/docs/get-started/quickstart"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor rules and AGENTS.md",
+      "url": "https://cursor.com/docs/rules"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor rules and CLAUDE.md compatibility",
+      "url": "https://cursor.com/help/customization/rules"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor skills",
+      "url": "https://cursor.com/docs/skills"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor subagents",
+      "url": "https://cursor.com/docs/subagents"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor hooks",
+      "url": "https://cursor.com/docs/hooks"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor desktop and local Agent permissions",
+      "url": "https://cursor.com/docs/reference/permissions"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor desktop and local Agent sandbox configuration",
+      "url": "https://cursor.com/docs/reference/sandbox"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor Agent run modes and authority boundaries",
+      "url": "https://cursor.com/docs/agent/security/run-modes"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor staff guidance for opening WSL workspaces on the Linux host",
+      "url": "https://forum.cursor.com/t/agent-tools-fail-on-wsl-workspace-opened-via-wsl-localhost-path-resolves-to-c-home-glob-times-out-shell-intermittent-cursor-3-9-16/165471/5"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor Model Context Protocol",
+      "url": "https://cursor.com/docs/mcp"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor CLI installation",
+      "url": "https://cursor.com/docs/cli/installation"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor POSIX CLI installer",
+      "url": "https://cursor.com/install"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor Windows CLI installer",
+      "url": "https://cursor.com/install?win32=true"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor CLI overview",
+      "url": "https://cursor.com/docs/cli/overview"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor Agent CLI commands, authentication status, and MCP diagnostics",
+      "url": "https://cursor.com/docs/cli/reference/parameters"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor Agent CLI global and project configuration",
+      "url": "https://cursor.com/docs/cli/reference/configuration"
+    },
+    {
+      "vendor": "Cursor",
+      "topic": "Cursor Agent CLI permission tokens and precedence",
+      "url": "https://cursor.com/docs/cli/reference/permissions"
+    },
+    {
+      "vendor": "Graphite",
+      "topic": "Optional Graphite CLI branch-stack observation and gt log short command",
+      "url": "https://graphite.com/docs/command-reference"
+    }
+  ]
+}

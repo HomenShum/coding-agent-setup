@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "reconcile-claims-to-landed",
+  "trigger": "Use when reported outcomes must be compared with observed repository, review, deployment, artifact, and live-content state.",
+  "refusal": "Refuse to promote a report to proven status without direct evidence and refuse remote mutations or repairs unless the request explicitly authorizes them.",
+  "inputs": [
+    "claim_list",
+    "repository_state",
+    "review_state",
+    "deployment_state",
+    "artifact_index",
+    "live_signal"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

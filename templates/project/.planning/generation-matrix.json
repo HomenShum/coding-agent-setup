@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "personas": [
+    "newcomer",
+    "maintainer",
+    "adversarial-contributor"
+  ],
+  "durations": [
+    "burst",
+    "sustained"
+  ],
+  "states": [
+    "happy",
+    "denied",
+    "degraded",
+    "concurrent"
+  ],
+  "cases": []
+}

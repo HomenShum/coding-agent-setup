@@ -1,0 +1,35 @@
+{
+  "accessed": "2026-09-04",
+  "hosts": [
+    {
+      "name": "codex",
+      "instructions": "AGENTS.md",
+      "skills": ".agents/skills",
+      "agents": ".codex/agents",
+      "mcp": ".codex/config.toml",
+      "hooks": ".codex/hooks.json",
+      "permissions": ".codex/config.toml",
+      "parallel_workers": true
+    },
+    {
+      "name": "claude",
+      "instructions": ".claude/CLAUDE.md import plus .claude/rules/claude-code.md",
+      "skills": ".claude/skills",
+      "agents": ".claude/agents",
+      "mcp": ".mcp.json",
+      "hooks": ".claude/settings.json",
+      "permissions": ".claude/settings.json",
+      "parallel_workers": true
+    },
+    {
+      "name": "cursor",
+      "instructions": "AGENTS.md",
+      "skills": ".agents/skills",
+      "agents": ".cursor/agents",
+      "mcp": ".cursor/mcp.json",
+      "hooks": ".cursor/hooks.json",
+      "permissions": ".cursor/permissions.json and .cursor/sandbox.json (Desktop); .cursor/cli.json (Agent CLI)",
+      "parallel_workers": true
+    }
+  ]
+}

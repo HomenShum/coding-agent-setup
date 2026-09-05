@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "scope": "Sanitized direct GitHub Action declarations observed in historical workflows; private workflow names, paths, inputs, and application logic are excluded.",
+  "actions": [
+    {
+      "repository": "https://github.com/astral-sh/setup-uv",
+      "revision": "20cfd1bf945f4377ade1205e4dbc17946fc9a30d",
+      "evidence": "historical workflow use declaration"
+    },
+    {
+      "repository": "https://github.com/actions/checkout",
+      "revision": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "evidence": "historical workflow use declaration"
+    },
+    {
+      "repository": "https://github.com/actions/setup-python",
+      "revision": "5fda3b95a4ea91299a34e894583c3862153e4b97",
+      "evidence": "historical workflow use declaration"
+    },
+    {
+      "repository": "https://github.com/actions/setup-node",
+      "revision": "820762786026740c76f36085b0efc47a31fe5020",
+      "evidence": "historical workflow use declaration"
+    },
+    {
+      "repository": "https://github.com/actions/upload-artifact",
+      "revision": "043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+      "evidence": "historical workflow use declaration"
+    },
+    {
+      "repository": "https://github.com/langfuse/experiment-action",
+      "revision": "e1f126216d592429e76cef2223f9c57ba03aabe2",
+      "evidence": "historical workflow use declaration"
+    },
+    {
+      "repository": "https://github.com/anthropics/claude-code-action",
+      "revision": "v1",
+      "evidence": "historical workflow use declaration"
+    }
+  ]
+}

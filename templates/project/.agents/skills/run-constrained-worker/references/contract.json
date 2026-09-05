@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skill": "run-constrained-worker",
+  "trigger": "Use when one independent worker needs explicit allowed inputs, write scope, timeout, output cap, retry budget, and a typed receipt.",
+  "refusal": "Refuse to start without every bound and receipt schema, or when the worker would recursively delegate, exceed its authority, or share an unsafe write scope.",
+  "inputs": [
+    "worker_job",
+    "allowed_inputs",
+    "write_scope",
+    "timeout_budget",
+    "output_cap",
+    "retry_budget",
+    "receipt_schema"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

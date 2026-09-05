@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "enabled": false,
+  "owner": "[OWNER_ROLE]",
+  "trigger": "session start, pre-compaction, and stop",
+  "input": "bounded vendor hook JSON on stdin",
+  "side_effects": [
+    "writes hashed checkpoint state under .agent-local/self-review"
+  ],
+  "timeout_seconds": 5,
+  "output_bytes": 8192,
+  "rollback": "remove the host hook entry and .agent-local/self-review",
+  "reviewed_revision": "[COMMIT_OR_VERSION]",
+  "threats_reviewed": [
+    "untrusted JSON",
+    "secret-bearing prompts",
+    "adversarial filenames",
+    "concurrent events",
+    "repeat stop loops"
+  ]
+}

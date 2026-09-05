@@ -1,0 +1,1 @@
+{"interface":{"display_name":"Run Agent Graph","short_description":"Route bounded LOOP and GRAPH workflows safely","default_prompt":"Use $run-agent-graph to choose and validate the smallest auditable agent topology for this task."}}

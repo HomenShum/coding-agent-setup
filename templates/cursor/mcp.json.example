@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "project-tools": {
+      "type": "stdio",
+      "command": "[PYTHON_EXECUTABLE]",
+      "args": [
+        "${workspaceFolder}/[PROJECT_MCP_ENTRYPOINT]"
+      ],
+      "env": {
+        "EXAMPLE_API_KEY": "${env:EXAMPLE_API_KEY}"
+      }
+    },
+    "project-remote-token": {
+      "url": "https://mcp.example.invalid/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:EXAMPLE_MCP_TOKEN}"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "skill": "publish-visual-tutorial",
+  "trigger": "Use when a learner needs a source-backed visual tutorial whose real workflow, scenes, export, and publication receipt must be verified.",
+  "refusal": "Refuse to fabricate a before-state or publish externally without explicit destination and audience authority; otherwise prepare the tutorial locally and mark publication blocked.",
+  "inputs": [
+    "learner",
+    "task",
+    "starting_state",
+    "workflow_source",
+    "scene_plan",
+    "publication_authority"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

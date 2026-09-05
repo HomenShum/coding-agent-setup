@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "[PROJECT_SLUG]-tools": {
+      "type": "stdio",
+      "command": "[PYTHON_EXECUTABLE]",
+      "args": [
+        "${CLAUDE_PROJECT_DIR:-.}/[PROJECT_MCP_ENTRYPOINT]"
+      ],
+      "env": {
+        "EXAMPLE_API_KEY": "${EXAMPLE_API_KEY}"
+      }
+    },
+    "[PROJECT_SLUG]-remote-token": {
+      "type": "http",
+      "url": "https://mcp.example.invalid/mcp",
+      "headers": {
+        "Authorization": "Bearer ${EXAMPLE_MCP_TOKEN}"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skill": "capture-ui-before-after",
+  "trigger": "Use before a user-interface change when comparable rendered evidence is required at the same route, viewport, data, theme, and interaction state.",
+  "refusal": "Refuse to reconstruct a before-state after editing or claim a visual comparison when the route, viewport, fixture, theme, or interaction state differs.",
+  "inputs": [
+    "route",
+    "viewport",
+    "session_class",
+    "fixture",
+    "theme",
+    "interaction_state",
+    "proof_destination"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

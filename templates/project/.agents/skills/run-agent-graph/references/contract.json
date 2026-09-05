@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "skill": "run-agent-graph",
+  "trigger": "Use when typed routing, isolated workers, bounded transitions, and judge-only delivery require an auditable LOOP or GRAPH state receipt.",
+  "refusal": "Refuse GRAPH without at least two current reasons, any route that bypasses judge-only delivery, or requested caps beyond the project limits.",
+  "inputs": [
+    "requested_outcome",
+    "mode",
+    "why_graph",
+    "state_template",
+    "transition_cap",
+    "worker_cap",
+    "handoff_reference",
+    "handoff_sha256"
+  ],
+  "receipt": [
+    "skill",
+    "status",
+    "inputs",
+    "evidence",
+    "verification"
+  ],
+  "verification": {
+    "argv": [
+      "{python}",
+      "scripts/validate_skill_receipt.py",
+      "--contract",
+      "{skill_dir}/references/contract.json",
+      "--receipt",
+      "{receipt}"
+    ],
+    "success": "exit 0"
+  }
+}

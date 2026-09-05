@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "mode": "LOOP",
+  "why_graph": [],
+  "caps": {
+    "steps": 12,
+    "workers": 5,
+    "receipts": 64
+  },
+  "current": "human",
+  "path": [
+    "human",
+    "planner",
+    "gate",
+    "human"
+  ],
+  "events": [],
+  "receipts": [],
+  "disposition": "PASS",
+  "delivered": true
+}

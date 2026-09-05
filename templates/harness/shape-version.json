@@ -1,0 +1,14 @@
+{
+  "artifact": "self-review",
+  "receipt_version": 1,
+  "required_receipt_fields": [
+    "answers",
+    "artifact",
+    "digest",
+    "paths",
+    "schema_digest",
+    "status",
+    "version"
+  ],
+  "version": 1
+}

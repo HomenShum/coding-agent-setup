@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "mode": "GRAPH",
+  "why_graph": [
+    "fan-out-fan-in",
+    "dedicated-reviewer"
+  ],
+  "caps": {
+    "steps": 12,
+    "workers": 5,
+    "receipts": 64
+  },
+  "current": "human",
+  "path": [
+    "human",
+    "planner",
+    "worker",
+    "planner",
+    "gate",
+    "judge",
+    "human"
+  ],
+  "events": [
+    {
+      "type": "host-switch",
+      "from": "host-a",
+      "to": "host-b",
+      "handoff": "handoffs/0001/HANDOFF.md",
+      "handoff_sha256": "81a7ed645f0cb618a00946f1bca22de33355155b5f0ce99f6de875e3c8f781f8"
+    }
+  ],
+  "receipts": [
+    {
+      "claim": "C1",
+      "worker": "worker-1",
+      "certainty": "MEASURED",
+      "evidence": "synthetic fixture"
+    }
+  ],
+  "disposition": "PASS",
+  "delivered": true
+}

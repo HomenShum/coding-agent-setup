@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Example Proof",
+    "short_description": "Verify one completion claim against raw evidence.",
+    "default_prompt": "Use $example-proof to judge one named outcome and return a validated receipt."
+  },
+  "policy": {
+    "allow_implicit_invocation": true
+  }
+}
