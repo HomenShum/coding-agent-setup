@@ -160,11 +160,13 @@ real `@../AGENTS.md` import. Do not add a root `CLAUDE.md`: Cursor already
 loads `AGENTS.md`, so a root compatibility file would load the contract twice.
 Put Claude-only rules under `.claude/rules/`.
 
-For a fresh empty repository, run the complete
-[Windows or POSIX materialization sequence](docs/setup.md#4-bootstrap-a-repository)
-before continuing. It copies the operational scripts, harness, native agent
-adapters, empty/disabled MCP starting points, and ignore rules assumed by
-steps 3–5 below.
+For a fresh or existing Git repository, use the
+[reviewable setup plan](docs/setup.md#4-bootstrap-a-repository) before continuing.
+It reports missing, identical, conflicting and blocked destinations without
+writing. Apply only reviewed missing files; existing instructions and configs
+remain manual merge work. Fresh setup uses the same map for helpers, native
+adapters, disabled MCP examples and unconfigured harness. Copying them does
+not activate a host or prove your application ready.
 
 ```text
 your-project/

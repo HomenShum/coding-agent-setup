@@ -42,3 +42,15 @@
   the expanded real-Git mutation suite observably exceeded the old budget on
   Windows; a timeout remains an honest preflight failure.
 - Caveats: self-review output is a prompt for inspection, not independent proof.
+
+## 2026-09-07 — Plan additive setup for an existing Git project
+
+- User outcome: review a finite file plan and add selected missing kit files
+  while retaining local instructions, Git state and competing writers' files.
+- Ownership: one placement map and plan/apply protocol in `scripts/setup_project.py`;
+  fresh-project scenario tests exercise that same CLI.
+- Verification: dirty and unborn Git consumers, source drift, canonical skill
+  completeness, concurrent creation, bounded unsafe paths, and partial progress
+  scenarios. The receipt reports unresolved setup without a readiness claim.
+- Limits: no automatic merges, overwrite, rollback, host activation or global
+  configuration; local stable-parent filesystem assumptions are documented.
