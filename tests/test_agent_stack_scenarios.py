@@ -1948,61 +1948,46 @@ class PublicTemplateScenarios(unittest.TestCase):
             parsed["mcp_servers"]["project_tools"]["command"],
         )
 
+    def materialize_new_git_project(self, root: Path) -> None:
+        """Exercise the documented CLI, not a second copy of its placement map."""
+        subprocess.run(["git", "init", "--quiet", "--template=", str(root)], check=True, timeout=10)
+        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as receipts:
+            plan = Path(receipts) / "plan.json"
+            for args in (
+                ["plan", "--out", str(plan)],
+                ["apply", "--plan", str(plan), "--all-missing", "--receipt", str(Path(receipts) / "progress.jsonl")],
+            ):
+                result = subprocess.run(
+                    [sys.executable, "-B", str(ROOT / "scripts/setup_project.py"), *args, "--target", str(root)],
+                    capture_output=True, text=True, timeout=60,
+                )
+                self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual("UNCONFIGURED", report["status"])
+            self.assertFalse(report["activation"])
+
     def test_documented_bootstrap_stops_when_one_native_copy_is_missing(self) -> None:
-        """A fresh-project setup cannot finish successfully after a copy step is lost."""
+        """A newcomer sees a missing native adapter after otherwise successful adoption."""
         with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             root = Path(directory)
-            shutil.copytree(ROOT / "templates" / "project", root, dirs_exist_ok=True)
-            for source, target in (
-                ("templates/codex/project.config.toml", ".codex/config.toml"),
-                ("templates/claude/settings.json", ".claude/settings.json"),
-            ):
-                destination = root / target
-                destination.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(ROOT / source, destination)
-            for source, target in (
-                ("templates/codex/agents", ".codex/agents"),
-                ("templates/claude/agents", ".claude/agents"),
-                ("templates/cursor/agents", ".cursor/agents"),
-            ):
-                shutil.copytree(ROOT / source, root / target)
-            (root / ".claude" / "skills").mkdir()
-            (root / "scripts").mkdir()
-            for name in ("path_safety.py", "setup_doctor.py"):
-                shutil.copy2(ROOT / "scripts" / name, root / "scripts" / name)
-
+            self.materialize_new_git_project(root)
+            (root / ".cursor/mcp.json").unlink()
             completed = subprocess.run(
-                [
-                    sys.executable,
-                    str(root / "scripts" / "setup_doctor.py"),
-                    "--project-root",
-                    str(root),
-                    "--skip-binaries",
-                ],
-                capture_output=True,
-                text=True,
-                timeout=10,
+                [sys.executable, "-B", str(root / "scripts/setup_doctor.py"),
+                 "--project-root", str(root), "--skip-binaries"],
+                capture_output=True, text=True, timeout=10,
             )
-
             self.assertEqual(2, completed.returncode, completed.stdout + completed.stderr)
             self.assertIn("MISSING: cursor .cursor/mcp.json", completed.stdout)
-            setup = (ROOT / "docs" / "setup.md").read_text(encoding="utf-8")
+            setup = (ROOT / "docs/setup.md").read_text(encoding="utf-8")
             self.assertIn("set -eu", setup)
             self.assertIn("throw 'Setup diagnosis failed'", setup)
 
     def test_newcomer_gets_an_honest_no_gate_after_documented_materialization(self) -> None:
         """A newcomer cannot inherit the kit's green evidence as target-project proof."""
-        setup = (ROOT / "docs" / "setup.md").read_text(encoding="utf-8")
-        posix_tools = setup.split("for TOOL in ", 1)[1].split("; do", 1)[0]
-        windows_tools = setup.split("'agent_preflight.py', 'prove_preflight_mutations.py'", 1)[1].split(") | ForEach-Object", 1)[0]
-        for name in ("bootstrap_learning.py", "outcome_review.py", "deployment_profile.py"):
-            self.assertIn(name, posix_tools)
-            self.assertIn(name, windows_tools)
-        self.assertIn('cp -R "$KIT_ROOT/templates/learning/." "$PROJECT_ROOT/templates/learning/"', setup)
-        self.assertIn("Copy-Item -Destination (Join-Path $ProjectRoot 'templates\\learning') -Recurse", setup)
         with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as directory:
             root = Path(directory)
-            shutil.copytree(ROOT / "templates" / "project", root, dirs_exist_ok=True)
+            self.materialize_new_git_project(root)
             ignore = (root / ".gitignore").read_text(encoding="utf-8")
             self.assertIn(".claude/skills/", ignore)
             self.assertIn(".agent-local/", ignore)
@@ -2031,60 +2016,6 @@ class PublicTemplateScenarios(unittest.TestCase):
             ):
                 self.assertTrue((root / relative).is_file(), relative)
 
-            copies = (
-                ("templates/codex/project.config.toml", ".codex/config.toml"),
-                ("templates/claude/settings.json", ".claude/settings.json"),
-                ("templates/cursor/mcp.json", ".cursor/mcp.json"),
-            )
-            for source, target in copies:
-                destination = root / target
-                destination.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(ROOT / source, destination)
-
-            for source, target in (
-                ("templates/codex/agents", ".codex/agents"),
-                ("templates/claude/agents", ".claude/agents"),
-                ("templates/cursor/agents", ".cursor/agents"),
-                ("templates/harness", "templates/harness"),
-                ("templates/learning", "templates/learning"),
-            ):
-                shutil.copytree(ROOT / source, root / target)
-
-            shutil.copy2(
-                root / "templates" / "harness" / "preflight.target.json",
-                root / "templates" / "harness" / "preflight.json",
-            )
-            shutil.copy2(
-                root / "templates" / "harness" / "self-review.target.json",
-                root / "templates" / "harness" / "self-review.json",
-            )
-
-            (root / "scripts").mkdir()
-            for name in (
-                "agent_preflight.py",
-                "bounded_process.py",
-                "git_safety.py",
-                "prove_preflight_mutations.py",
-                "validate_agent_state.py",
-                "sync_skills.py",
-                "self_review_hook.py",
-                "setup_doctor.py",
-                "check_branch_stack.py",
-                "check_claim_language.py",
-                "path_safety.py",
-                "validate_skill_receipt.py",
-                "bootstrap_learning.py",
-                "outcome_review.py",
-                "deployment_profile.py",
-            ):
-                shutil.copy2(ROOT / "scripts" / name, root / "scripts" / name)
-            (root / "tests").mkdir()
-            shutil.copy2(
-                ROOT / "tests" / "test_preflight_mutations.py",
-                root / "tests" / "test_preflight_mutations.py",
-            )
-
-            sync_skills.sync(root / ".agents" / "skills", root / ".claude" / "skills", force=False)
             doctor = setup_doctor.inspect_project(root, ("codex", "claude", "cursor"), True)
             setup_doctor.parse_configs(root, doctor)
             self.assertFalse([item for item in doctor if item["status"] != "present"])
@@ -2159,8 +2090,8 @@ class PublicTemplateScenarios(unittest.TestCase):
         self.assertIn("read-only diagnostic", setup)
         self.assertNotIn("skips the workspace trust dialog and starts stdio servers", setup)
         self.assertIn("--hosts codex --skip-binaries", setup)
-        self.assertIn('KIT_ROOT="/path/to/coding-agent-setup"', setup)
-        self.assertIn('PROJECT_ROOT="/path/to/new-project"', setup)
+        self.assertIn('setup_project.py plan --target /path/to/project --out /path/to/review/setup-plan.json', setup)
+        self.assertIn('--include AGENT_INVARIANTS.md --receipt /path/to/review/setup-progress.jsonl', setup)
         self.assertIn("templates/codex/config.toml", setup)
         self.assertIn("templates/claude/settings.local.json.example", setup)
         self.assertIn(".claude/settings.local.json", setup)

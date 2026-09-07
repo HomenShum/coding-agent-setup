@@ -402,68 +402,72 @@ Replace every `[BRACKETED_FIELD]`, keep commands runnable from the project
 root, and describe the real verification command. Nested instruction files
 should add only policy owned by that subtree.
 
-For a fresh project, materialize the shared templates and native adapters
-before running any host. The destination must be absent or empty; both recipes
-stop on existing content and initialize it as a Git repository because the
-worktree and branch-stack adapters depend on Git. The sequence deliberately
-does not copy hook examples.
+Fresh and existing Git projects use the same bounded placement map in
+`scripts/setup_project.py`. Run it from this kit, naming the exact project root.
+The default only reports `MISSING`, `IDENTICAL`, `CONFLICT`, or `BLOCKED` for
+known kit destinations; it does not scan unrelated project files or create
+Python caches. A fresh `git init` without a first commit is supported.
 
-macOS, Linux, or WSL:
+### Review before adding files
+
+Use an existing physical project path, or create a fresh directory and run
+`git init` there first. Keep the plan and progress receipt in a separate
+existing directory outside both the kit and project. The following commands
+are identical on Windows, macOS, Linux, and WSL; use your Python 3.11+ command
+(`python`, `python3`, or `py -3`) and real paths:
+
+```text
+python /path/to/coding-agent-setup/scripts/setup_project.py --target /path/to/project
+python /path/to/coding-agent-setup/scripts/setup_project.py plan --target /path/to/project --out /path/to/review/setup-plan.json
+python /path/to/coding-agent-setup/scripts/setup_project.py apply --target /path/to/project --plan /path/to/review/setup-plan.json --include AGENT_INVARIANTS.md --receipt /path/to/review/setup-progress.jsonl
+```
+
+Read the plan before applying. Repeat `--include` for each reviewed missing
+file. For a fresh project, or when **every missing destination** has been
+reviewed, replace the include arguments with `--all-missing`. The same map
+supplies native adapters, operational helpers, learning templates, and the
+unconfigured target harness. Hook examples are not copied; MCP examples remain
+disabled. No host session, provider, global setting, or project command starts.
+
+Existing differing instructions, ignore rules and configurations require a
+deliberate manual merge. They are never overwritten or automatically merged.
+Claude skill mirrors are eligible only when the complete corresponding
+canonical skill tree matches, including extra and missing files; reviewed
+missing canonical additions can complete that tree in the same application.
+
+The plan binds the kit bytes and Git target identity. A changed template,
+branch or HEAD requires a fresh plan. An identical repeat is a no-op; a racing
+writer is preserved. Receipt files are exclusively created and JSONL progress
+is flushed after each operation. On a partial I/O or receipt failure, stop and
+inspect the durable receipt prefix plus stdout's failure report: already
+created or partial files remain. There is no automatic rollback. Re-plan with
+a new external receipt name after resolving the failure. Incomplete or
+conflicting setup reports unresolved items; even complete copying reports
+`UNCONFIGURED`, never application readiness.
+
+File creation uses directory-relative exclusive operations and rejects linked
+components. Use a local filesystem with stable parent directories under your
+control. This is not protection against an actor relocating an already opened
+POSIX directory or editing a file after creation, nor an atomic crash recovery
+transaction. Unsupported filesystem operations fail rather than fall back to
+an overwrite-capable copy.
+
+### Check a fresh copied scaffold
+
+After reviewing the copied files, run the structural doctor and generic
+mutation proof. For an existing project, review its existing scripts before
+executing them; copying selected files did not validate those scripts.
 
 ```bash
 set -eu
 PYTHON=${PYTHON:-python3}
-command -v git >/dev/null
-command -v "$PYTHON" >/dev/null
-git --version
-"$PYTHON" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)'
-KIT_ROOT="/path/to/coding-agent-setup"
-PROJECT_ROOT="/path/to/new-project"
-if [ -e "$PROJECT_ROOT" ] && [ ! -d "$PROJECT_ROOT" ]; then
-  echo "Project destination exists and is not a directory" >&2
-  exit 1
-fi
-if [ -d "$PROJECT_ROOT" ] && find "$PROJECT_ROOT" -mindepth 1 -maxdepth 1 -print -quit | grep -q .; then
-  echo "Project destination must be empty" >&2
-  exit 1
-fi
-mkdir -p "$PROJECT_ROOT" "$PROJECT_ROOT/.codex" \
-  "$PROJECT_ROOT/.claude" "$PROJECT_ROOT/.cursor" \
-  "$PROJECT_ROOT/scripts" "$PROJECT_ROOT/templates/harness" "$PROJECT_ROOT/templates/learning" \
-  "$PROJECT_ROOT/tests"
-git -C "$PROJECT_ROOT" init --quiet
-cp -R "$KIT_ROOT/templates/project/." "$PROJECT_ROOT/"
-cp "$KIT_ROOT/templates/codex/project.config.toml" \
-  "$PROJECT_ROOT/.codex/config.toml"
-cp -R "$KIT_ROOT/templates/codex/agents" "$PROJECT_ROOT/.codex/agents"
-cp "$KIT_ROOT/templates/claude/settings.json" \
-  "$PROJECT_ROOT/.claude/settings.json"
-cp -R "$KIT_ROOT/templates/claude/agents" "$PROJECT_ROOT/.claude/agents"
-cp "$KIT_ROOT/templates/cursor/mcp.json" "$PROJECT_ROOT/.cursor/mcp.json"
-cp -R "$KIT_ROOT/templates/cursor/agents" "$PROJECT_ROOT/.cursor/agents"
-cp -R "$KIT_ROOT/templates/harness/." "$PROJECT_ROOT/templates/harness/"
-cp -R "$KIT_ROOT/templates/learning/." "$PROJECT_ROOT/templates/learning/"
-cp "$PROJECT_ROOT/templates/harness/preflight.target.json" \
-  "$PROJECT_ROOT/templates/harness/preflight.json"
-cp "$PROJECT_ROOT/templates/harness/self-review.target.json" \
-  "$PROJECT_ROOT/templates/harness/self-review.json"
-for TOOL in agent_preflight.py prove_preflight_mutations.py validate_agent_state.py \
-  sync_skills.py self_review_hook.py setup_doctor.py path_safety.py bounded_process.py git_safety.py check_branch_stack.py \
-  check_claim_language.py validate_skill_receipt.py bootstrap_learning.py outcome_review.py deployment_profile.py; do
-  cp "$KIT_ROOT/scripts/$TOOL" "$PROJECT_ROOT/scripts/$TOOL"
-done
-cp "$KIT_ROOT/tests/test_preflight_mutations.py" "$PROJECT_ROOT/tests/"
-"$PYTHON" "$PROJECT_ROOT/scripts/sync_skills.py" sync --project-root "$PROJECT_ROOT"
+PROJECT_ROOT="/path/to/project"
 "$PYTHON" "$PROJECT_ROOT/scripts/setup_doctor.py" --project-root "$PROJECT_ROOT" --skip-binaries
-if "$PYTHON" "$PROJECT_ROOT/scripts/agent_preflight.py" --root "$PROJECT_ROOT" \
-  --config templates/harness/preflight.json --json; then
-  PREFLIGHT_STATUS=0
-else
-  PREFLIGHT_STATUS=$?
-fi
-if [ "$PREFLIGHT_STATUS" -ne 2 ]; then
-  echo "Expected target preflight to report NO_GATE before configuration" >&2
+if "$PYTHON" "$PROJECT_ROOT/scripts/agent_preflight.py" --root "$PROJECT_ROOT" --config templates/harness/preflight.json --json; then
+  echo "Expected NO_GATE for an unconfigured fresh scaffold" >&2
   exit 1
+else
+  test "$?" -eq 2
 fi
 "$PYTHON" "$PROJECT_ROOT/scripts/prove_preflight_mutations.py"
 ```
@@ -479,75 +483,18 @@ if ($null -eq $PythonCommand) {
   $PythonPrefix = @('-3')
 }
 $PythonExe = $PythonCommand.Source
-Get-Command git -ErrorAction Stop | Out-Null
-git --version
-if ($LASTEXITCODE -ne 0) { throw 'Git prerequisite check failed' }
+$ProjectRoot = (Resolve-Path 'D:\path\to\project').Path
 & $PythonExe @PythonPrefix -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 11) else 1)'
 if ($LASTEXITCODE -ne 0) { throw 'Python 3.11 or newer is required' }
-$KitRoot = (Resolve-Path 'C:\path\to\coding-agent-setup').Path
-$ProjectPath = 'D:\path\to\new-project'
-if (Test-Path -LiteralPath $ProjectPath -PathType Leaf) {
-  throw 'Project destination exists and is not a directory'
-}
-if ((Test-Path -LiteralPath $ProjectPath -PathType Container) -and
-    @(Get-ChildItem -LiteralPath $ProjectPath -Force).Count -ne 0) {
-  throw 'Project destination must be empty'
-}
-New-Item -ItemType Directory -Force -Path $ProjectPath | Out-Null
-$ProjectRoot = (Resolve-Path $ProjectPath).Path
-@('.codex', '.claude', '.cursor', 'scripts', 'templates\harness', 'templates\learning', 'tests') | ForEach-Object {
-  New-Item -ItemType Directory -Force -Path (Join-Path $ProjectRoot $_) | Out-Null
-}
-git -C $ProjectRoot init --quiet
-if ($LASTEXITCODE -ne 0) { throw 'Git repository initialization failed' }
-Get-ChildItem -LiteralPath (Join-Path $KitRoot 'templates\project') -Force |
-  Copy-Item -Destination $ProjectRoot -Recurse
-Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\codex\project.config.toml') `
-  -Destination (Join-Path $ProjectRoot '.codex\config.toml')
-Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\codex\agents') `
-  -Destination (Join-Path $ProjectRoot '.codex\agents') -Recurse
-Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\claude\settings.json') `
-  -Destination (Join-Path $ProjectRoot '.claude\settings.json')
-Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\claude\agents') `
-  -Destination (Join-Path $ProjectRoot '.claude\agents') -Recurse
-Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\cursor\mcp.json') `
-  -Destination (Join-Path $ProjectRoot '.cursor\mcp.json')
-Copy-Item -LiteralPath (Join-Path $KitRoot 'templates\cursor\agents') `
-  -Destination (Join-Path $ProjectRoot '.cursor\agents') -Recurse
-Get-ChildItem -LiteralPath (Join-Path $KitRoot 'templates\harness') -Force |
-  Copy-Item -Destination (Join-Path $ProjectRoot 'templates\harness') -Recurse
-Get-ChildItem -LiteralPath (Join-Path $KitRoot 'templates\learning') -Force |
-  Copy-Item -Destination (Join-Path $ProjectRoot 'templates\learning') -Recurse
-Copy-Item -LiteralPath (Join-Path $ProjectRoot 'templates\harness\preflight.target.json') `
-  -Destination (Join-Path $ProjectRoot 'templates\harness\preflight.json') -Force
-Copy-Item -LiteralPath (Join-Path $ProjectRoot 'templates\harness\self-review.target.json') `
-  -Destination (Join-Path $ProjectRoot 'templates\harness\self-review.json') -Force
-@(
-  'agent_preflight.py', 'prove_preflight_mutations.py', 'validate_agent_state.py',
-  'sync_skills.py', 'self_review_hook.py', 'setup_doctor.py', 'path_safety.py',
-  'bounded_process.py', 'git_safety.py', 'check_branch_stack.py', 'check_claim_language.py',
-  'validate_skill_receipt.py', 'bootstrap_learning.py', 'outcome_review.py', 'deployment_profile.py'
-) | ForEach-Object {
-  Copy-Item -LiteralPath (Join-Path $KitRoot "scripts\$_") `
-    -Destination (Join-Path $ProjectRoot "scripts\$_")
-}
-Copy-Item -LiteralPath (Join-Path $KitRoot 'tests\test_preflight_mutations.py') `
-  -Destination (Join-Path $ProjectRoot 'tests\test_preflight_mutations.py')
-& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts\sync_skills.py') sync --project-root $ProjectRoot
-if ($LASTEXITCODE -ne 0) { throw 'Skill synchronization failed' }
-& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts\setup_doctor.py') --project-root $ProjectRoot --skip-binaries
+& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts/setup_doctor.py') --project-root $ProjectRoot --skip-binaries
 if ($LASTEXITCODE -ne 0) { throw 'Setup diagnosis failed' }
-& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts\agent_preflight.py') --root $ProjectRoot `
-  --config templates/harness/preflight.json --json
-if ($LASTEXITCODE -ne 2) {
-  throw 'Expected target preflight to report NO_GATE before configuration'
-}
-& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts\prove_preflight_mutations.py')
+& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts/sync_skills.py') check --project-root $ProjectRoot
+if ($LASTEXITCODE -ne 0) { throw 'Skill verification failed' }
+& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts/agent_preflight.py') --root $ProjectRoot --config templates/harness/preflight.json --json
+if ($LASTEXITCODE -ne 2) { throw 'Expected target preflight to report NO_GATE before configuration' }
+& $PythonExe @PythonPrefix (Join-Path $ProjectRoot 'scripts/prove_preflight_mutations.py')
 if ($LASTEXITCODE -ne 0) { throw 'Preflight mutation proof failed' }
 ```
-
-For an existing project, compare files first and merge intentionally; these
-commands are a guarded fresh-project bootstrap, not an update mechanism.
 
 The copied target intentionally exits `2` with `NO_GATE`. That is success for
 materialization, not promotion: replace the placeholder with target-owned

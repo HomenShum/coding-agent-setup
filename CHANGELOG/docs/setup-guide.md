@@ -66,3 +66,12 @@
   default; anonymous raw fetches returned HTTP 200 for the README title signal
   and a 111-project machine ledger at remote commit `79508f0`.
 - Caveats: vendor documentation is mutable; access dates are recorded.
+
+## 2026-09-07 — Review missing files before project adoption
+
+- Replace duplicate fresh-only shell copy maps with one documented read-only
+  plan and explicit missing-file apply for fresh and existing Git projects.
+- Explain complete canonical skill matching, manual conflicts, durable partial
+  receipts and inactive hooks/MCP. Keep target `NO_GATE` distinct from copying.
+- Verification: documented CLI consumers retain the structural doctor and
+  genuine missing-adapter and unconfigured-project scenarios.
