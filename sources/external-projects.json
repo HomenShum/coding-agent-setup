@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "accessed": "2026-09-05",
+  "accessed": "2026-09-08",
   "scope": "Bounded direct-source corpus reconstructed through 2026-09-04 from the supplied setup inventory, sanitized direct dependency and container declarations, local extension records, current kit configuration, and primary public repositories. Historical application code and prose, private repositories, and transitive packages are excluded.",
   "methodology": {
     "current_kit_direct": [
@@ -15,7 +15,8 @@
       "https://github.com/agentskills/agentskills",
       "https://github.com/SchemaStore/schemastore",
       "https://github.com/openai/codex-plugin-cc",
-      "https://github.com/Sahir619/fable-method"
+      "https://github.com/Sahir619/fable-method",
+      "https://github.com/HomenShum/codex-claude-cursor-setup"
     ],
     "required_historical_sources": [
       "https://github.com/Vistyy/nopus",
@@ -60,6 +61,16 @@
       "license": "Python Software Foundation License Version 2",
       "accessed": "2026-09-04",
       "evidence": "Current scripts, CI runtime declaration, setup instructions, and upstream LICENSE",
+      "confidence": "high"
+    },
+    {
+      "name": "Canonical three-host setup kit",
+      "repository": "https://github.com/HomenShum/codex-claude-cursor-setup",
+      "category": "agent-workflow",
+      "relationship": "Original same-owner repository renamed in place; canonical continuation of this intermediate setup publication.",
+      "license": "MIT",
+      "accessed": "2026-09-08",
+      "evidence": "Public repository identity, integrated main tree, migration guide, and unchanged LICENSE",
       "confidence": "high"
     },
     {

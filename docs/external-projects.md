@@ -1,6 +1,6 @@
 # External projects
 
-<!-- external-projects-json-sha256: d7a0750751fda5d16c6df97fcc3001fd12889a80838ed4576e1604fcc018b5db -->
+<!-- external-projects-json-sha256: bda0df5af71a7317c707adc6c9f26670ede1f9db991e85497d5700638eeb2908 -->
 
 This is the human-readable view of the machine ledger in [`sources/external-projects.json`](../sources/external-projects.json). It is a bounded corpus reconstructed through 2026-09-04 from the supplied setup inventory, current kit files, sanitized direct dependency and container declarations, local extension records, and historical research notes. It deliberately excludes transitive packages, private repository identities, and historical application code or prose.
 
@@ -46,6 +46,7 @@ Agents, official marketplaces, MCP servers, installed skills, and review or proo
 
 | Project | Relationship | License | Accessed | Evidence and caveats |
 |---|---|---|---|---|
+| [Canonical three-host setup kit](https://github.com/HomenShum/codex-claude-cursor-setup) | Original same-owner repository renamed in place; canonical continuation of this intermediate setup publication. | MIT | 2026-09-08 | Evidence: Public repository identity, integrated main tree, migration guide, and unchanged LICENSE |
 | [Anthropic Claude Code](https://github.com/anthropics/claude-code) | Primary coding agent and browser-assisted implementation workflow in prior development work. | Proprietary; Anthropic Commercial Terms (repository notice reserves rights) | 2026-08-23 | Evidence: Historical agent playbook and setup records |
 | [OpenAI Codex](https://github.com/openai/codex) | Implementation and adversarial-review agent used in cross-agent workflows. | Apache-2.0 | 2026-08-23 | Evidence: Historical agent playbook and current setup |
 | [Agent Skills](https://github.com/agentskills/agentskills) | Portable skill format adopted for the canonical project skill templates. | Apache-2.0 for code and specification; CC-BY-4.0 for documentation | 2026-09-04 | Evidence: Public specification, examples, and repository license files |

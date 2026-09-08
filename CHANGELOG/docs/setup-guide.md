@@ -1,5 +1,15 @@
 # Setup guide changelog
 
+## 2026-09-08 — Point subscribers to the original canonical repository
+
+- User outcome: readers of this intermediate publication can find the original
+  repository, now named `codex-claude-cursor-setup`, and its safe migration guide.
+- Files: `README.md` and the linked human/machine source ledger.
+- Verification: public canonical identity and README/guide content readback,
+  local offline validation, and the publication scenario suite.
+- Caveats: this notice does not rewrite, archive, or delete this repository.
+  Older original ancestry must not be merged back into the sanitized main.
+
 ## 2026-09-04 — Support one contract across three native hosts
 
 - Commit: uncommitted local change; publication is blocked by the current

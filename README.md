@@ -1,5 +1,13 @@
 # Codex + Claude Code + Cursor setup
 
+> **Canonical repository:** continue at
+> [codex-claude-cursor-setup](https://github.com/HomenShum/codex-claude-cursor-setup).
+> The original `codex-claude-code-setup` repository was renamed in place and
+> now includes this kit plus the latest Cursor scope corrections. This separate
+> repository is retained as the intermediate publication and history source.
+> Read the [subscriber migration guide](https://github.com/HomenShum/codex-claude-cursor-setup/blob/main/docs/repository-migration.md)
+> before updating an old clone; do not merge the original pre-rewrite ancestry.
+
 A public, copy-safe setup for using OpenAI Codex, Anthropic Claude Code, and
 Cursor in the same repository. One `AGENTS.md` owns the shared project
 contract; small host-native adapters provide MCP, hooks, subagents, and skill
