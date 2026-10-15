@@ -7,6 +7,10 @@
 > repository is retained as the intermediate publication and history source.
 > Read the [subscriber migration guide](https://github.com/HomenShum/codex-claude-cursor-setup/blob/main/docs/repository-migration.md)
 > before updating an old clone; do not merge the original pre-rewrite ancestry.
+>
+> Recurring maintenance runs in the maintained kit. This intermediate
+> publication retains push, pull-request, and manual validation, including the
+> full offline suite. Its historical checks and sources remain available.
 
 A public, copy-safe setup for using OpenAI Codex, Anthropic Claude Code, and
 Cursor in the same repository. One `AGENTS.md` owns the shared project

@@ -1,5 +1,16 @@
 # Validator changelog
 
+## 2026-10-15 — Retire duplicate weekly maintenance
+
+- User outcome: recurring maintenance follows the existing canonical-repository
+  migration notice instead of repeatedly exercising an intermediate publication.
+- Files: `.github/workflows/validate.yml` and `README.md`.
+- Verification: remove only the schedule trigger; preserve every job, bound,
+  permission, test, and manual/push/pull-request validation path.
+- Caveats: previous failures remain historical evidence. The Windows descendant
+  pipe timeout behavior is separate and is not repaired by this change.
+- Touches: `CHANGELOG/docs/setup-guide.md`.
+
 - 2026-09-04: bind current-kit Git/Python prerequisites and every human ledger
   relationship, license, and access date to the machine-readable source catalog.
 - 2026-09-04: reject concrete Windows drive-root paths written with either
