@@ -3,8 +3,6 @@ name: Validate setup kit
 on:
   push:
   pull_request:
-  schedule:
-    - cron: "17 8 * * 1"
   workflow_dispatch:
 
 permissions:

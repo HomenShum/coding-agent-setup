@@ -1,5 +1,16 @@
 # Setup guide changelog
 
+## 2026-10-15 — Clarify intermediate-publication maintenance
+
+- User outcome: subscribers can distinguish the maintained canonical kit from
+  this retained publication without losing its source or validation history.
+- Files: `README.md` and `.github/workflows/validate.yml`.
+- Verification: offline validation, scenario and preflight checks, and an exact
+  comparison preserving all jobs and the push, pull-request, and manual triggers.
+- Caveats: retiring duplicate scheduled maintenance does not resolve the
+  historical Windows hook-test timeout or certify every external link.
+- Touches: `CHANGELOG/scripts/validator.md`.
+
 ## 2026-09-08 — Point subscribers to the original canonical repository
 
 - User outcome: readers of this intermediate publication can find the original
